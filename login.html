@@ -1,0 +1,73 @@
+﻿
+<!doctype html>
+<html lang="pl">
+  <head>
+    <link rel="icon" type="image/png" href="logo.png" />
+    <link rel="apple-touch-icon" href="logo.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Razem w Głowie - Logowanie</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="login.css" />
+  </head>
+  <body class="light-mode">
+    <div class="login-container">
+      <div class="logo-container">
+        <img src="logo.png" alt="Razem w Głowie Logo" />
+      </div>
+
+      <h1>Razem w Głowie</h1>
+      <p class="subtitle">Zaloguj się do swojego konta</p>
+
+      <div class="error-message" id="errorMessage"></div>
+      <div class="success-message" id="successMessage"></div>
+
+        <form id="loginForm">
+          <div class="input-group">
+            <label for="username">E-mail</label>
+            <input
+              type="email"
+              id="username"
+              name="username"
+              required
+              placeholder="Wpisz swój e-mail"
+              autocomplete="email"
+            />
+          </div>
+        <div class="input-group">
+          <label for="password">Hasło</label>
+          <div class="password-wrap">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              required
+              placeholder="Wpisz swoje hasło"
+            />
+            <i class="fa-solid fa-eye" id="togglePassword"></i>
+          </div>
+        </div>
+
+        <button type="submit" class="login-btn">Zaloguj się</button>
+      </form>
+
+      <div class="forgot-password">
+        <a href="forgot.html" id="forgotPasswordLink">Nie pamiętam hasła</a>
+      </div>
+
+      <div class="forgot-password">
+        <a href="register.html">Nie masz konta? Zarejestruj się</a>
+      </div>
+    </div>
+
+    <script src="user-management.js"></script>
+    <script type="module" src="login.js"></script>
+  </body>
+</html>

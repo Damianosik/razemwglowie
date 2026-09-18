@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <link rel="icon" type="image/png" href="logo.png" />
+    <link rel="apple-touch-icon" href="logo.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Razem w Głowie - Platforma</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="profile-ui.css" />
+    <link rel="stylesheet" href="footer.css" />
+  </head>
+  <body class="page-dashboard light-mode">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="logo-wrapper-small">
+          <img src="logo.png" alt="Logo" class="nav-logo-img" />
+          <span class="logo-text">Razem w Głowie</span>
+        </div>
+
+        <nav class="topbar-nav">
+          <ul>
+            <li><a href="#" class="active">Strona główna</a></li>
+            <li><a href="forum.html">Forum</a></li>
+            <li><a href="wiki.html">Baza wiedzy</a></li>
+            <li>
+              <a
+                href="ankieta.html"
+                >Ankieta</a
+              >
+            </li>
+            <li><a href="#specjalisci">Specjaliści</a></li>
+            <li><a href="about.html">O nas</a></li>
+            <li><a href="admin.html" id="adminNavLink" style="display: none">Panel admina</a></li>
+          </ul>
+        </nav>
+        <div class="topbar-right"></div>
+
+        <div class="user-profile" id="userProfile">
+          <div class="notify" id="notifyWrap">
+            <button
+              class="notify-btn"
+              id="notifyBtn"
+              type="button"
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-label="Powiadomienia"
+            >
+              <img
+                src="dzwon.jpg"
+                alt="Powiadomienia"
+                class="notify-icon-img"
+              />
+              <span class="notify-badge" id="notifyBadge" aria-hidden="true"
+                >0</span
+              >
+            </button>
+            <div class="notify-panel" id="notifyPanel" aria-hidden="true">
+              <div class="notify-header">
+                <span>Powiadomienia</span>
+                <button class="notify-clear" id="notifyClear" type="button">
+                  Wyczyść
+                </button>
+              </div>
+              <div class="notify-list" id="notifyList">
+                <div class="notify-empty">Brak nowych powiadomień.</div>
+              </div>
+              <form class="notify-form" id="notifyForm" style="display: none">
+                <label for="notifyMessage">Nowe powiadomienie (admin)</label>
+                <input
+                  type="text"
+                  id="notifyMessage"
+                  name="notifyMessage"
+                  placeholder="Napisz wiadomość"
+                  maxlength="120"
+                />
+                <button type="submit">Dodaj</button>
+              </form>
+            </div>
+          </div>
+          <button
+            class="profile-trigger"
+            id="profileTrigger"
+            type="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <span class="user-name">Witaj, Gościu</span>
+            <div class="avatar"><span class="avatar-initial">G</span></div>
+          </button>
+          <div class="profile-menu" id="profileMenu" aria-hidden="true">
+            <div class="profile-menu-header">
+              <span class="profile-title">Centrum profilu</span>
+              <span class="profile-subtitle" id="profileUser">Gościu</span>
+            </div>
+            <div class="profile-menu-list">
+              <a href="#" class="profile-link" id="openProfileSettings"
+                >Mój profil</a
+              >
+              <a href="#" class="profile-link" id="openAccountSettings"
+                >Ustawienia konta</a
+              >
+              <a href="forum.html" class="profile-link">Moje posty</a>
+              <a href="admin.html" class="profile-link" id="openAdminPanel" style="display: none">Panel administratora</a>
+              <a href="#specjalisci" class="profile-link">Pomoc i kontakt</a>
+            </div>
+            <button class="profile-logout" type="button" id="logoutBtn">
+              Wyloguj się
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="profile-modal" id="profileModal" aria-hidden="true">
+      <div class="profile-modal-card" role="dialog" aria-modal="true">
+        <div class="profile-modal-header">
+          <h3>Moje ustawienia</h3>
+          <button
+            class="profile-modal-close"
+            id="closeProfileModal"
+            type="button"
+          >
+            Zamknij
+          </button>
+        </div>
+        <form class="profile-form" id="profileForm">
+          <div class="settings-section">
+            <p class="settings-title">Profil</p>
+            <div class="profile-field">
+              <label for="profileNick">Nick</label>
+              <input
+                type="text"
+                id="profileNick"
+                name="profileNick"
+                placeholder="Twój nick"
+                maxlength="24"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <p class="settings-title">Awatar</p>
+            <div class="profile-field">
+              <label for="profileAvatar">Kolor awatara</label>
+              <input type="color" id="profileAvatar" name="profileAvatar" />
+              <span class="profile-hint"
+                >Jeśli nie ma zdjęcia, pokażemy litere nicku</span
+              >
+            </div>
+            <div class="profile-field">
+              <label for="profileAvatarFile">Zdjęcie profilowe</label>
+              <div class="profile-file-picker">
+                <input
+                  class="profile-file-input"
+                  type="file"
+                  id="profileAvatarFile"
+                  name="profileAvatarFile"
+                  accept="image/*"
+                />
+                <label class="profile-file-button" for="profileAvatarFile" role="button" tabindex="0"
+                  >Wybierz plik</label
+                >
+                <span class="profile-file-name" id="profileAvatarFileName"
+                  >Nie wybrano pliku</span
+                >
+              </div>
+              <span class="profile-hint"
+                >JPG/PNG/WebP, zapis w Firebase Storage</span
+              >
+              <button class="profile-reset profile-danger" type="button" id="removeAvatarBtn">
+                Usuń profilowe
+              </button>
+            </div>
+          </div>
+
+          <button class="profile-save" type="submit">Zapisz zmiany</button>
+          <div class="profile-feedback" id="profileFeedback"></div>
+        </form>
+      </div>
+    </div>
+
+    <div class="profile-modal" id="accountModal" aria-hidden="true">
+      <div class="profile-modal-card" role="dialog" aria-modal="true">
+        <div class="profile-modal-header">
+          <h3>Ustawienia konta</h3>
+          <button
+            class="profile-modal-close"
+            id="closeAccountModal"
+            type="button"
+          >
+            Zamknij
+          </button>
+        </div>
+        <form class="profile-form" id="accountForm">
+          <div class="settings-section">
+            <p class="settings-title">Dane konta</p>
+            <div class="profile-field">
+              <label for="accountEmailAddress">Adres e-mail</label>
+              <input
+                type="email"
+                id="accountEmailAddress"
+                name="accountEmailAddress"
+                placeholder="np. twoj@mail.pl"
+                autocomplete="email"
+              />
+              <span class="profile-hint">Zmień adres do powiadomień</span>
+            </div>
+            <div class="profile-field">
+              <label for="accountEmailPassword">Potwierdź hasło</label>
+              <input
+                type="password"
+                id="accountEmailPassword"
+                name="accountEmailPassword"
+                placeholder="Wpisz hasło, by zmienić e-mail"
+                autocomplete="current-password"
+              />
+              <span class="profile-hint">Wymagane przy zmianie e-maila</span>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <p class="settings-title">Preferencje</p>
+
+            <label class="setting-toggle" for="accountTheme">
+              <span class="setting-text">
+                <strong>Ciemny kolor strony</strong>
+                <small>Włącz ciemniejszy tryb we wszystkich zakładkach</small>
+              </span>
+              <input type="checkbox" id="accountTheme" name="accountTheme" />
+            </label>
+
+            <label class="setting-toggle" for="accountAnon">
+              <span class="setting-text">
+                <strong>Tryb anonimowy</strong>
+                <small>Nadaj nick Anonimowy 1, 2, 3...</small>
+              </span>
+              <input type="checkbox" id="accountAnon" name="accountAnon" />
+            </label>
+
+            <label class="setting-toggle" for="accountEmail">
+              <span class="setting-text">
+                <strong>Powiadomienia mailowe</strong>
+                <small
+                  >Wysyłaj informacje o nowych odpowiedziach i
+                  wiadomościach</small
+                >
+              </span>
+              <input type="checkbox" id="accountEmail" name="accountEmail" />
+            </label>
+
+            <label class="setting-toggle" for="accountReduceMotion">
+              <span class="setting-text">
+                <strong>Mniej animacji</strong>
+                <small>Wylacz rozbudowane przejscia</small>
+              </span>
+              <input
+                type="checkbox"
+                id="accountReduceMotion"
+                name="accountReduceMotion"
+              />
+            </label>
+          </div>
+
+          <button class="profile-save" type="submit">Zapisz ustawienia</button>
+          <button class="profile-reset" type="button" id="resetSettings">
+            Przywroc ustawienia poczatkowe
+          </button>
+          <div class="profile-feedback" id="accountFeedback"></div>
+        </form>
+      </div>
+    </div>
+
+    <div class="profile-modal" id="resetModal" aria-hidden="true">
+      <div class="profile-modal-card" role="dialog" aria-modal="true">
+        <div class="profile-modal-header">
+          <h3>Potwierdzenie</h3>
+        </div>
+        <div class="reset-body">
+          <p>
+            Czy na pewno chcesz przywrocic ustawienia poczatkowe? Stracisz
+            zdjecie, kolor avatara, anonimowy nick, powiadomienia, dzwieki i
+            tryb strony.
+          </p>
+        </div>
+        <div class="reset-actions">
+          <button class="profile-reset" type="button" id="cancelReset">
+            Anuluj
+          </button>
+          <button class="profile-save" type="button" id="confirmReset">
+            Tak, resetuj
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <section class="hero-section">
+      <div class="hero-content">
+        <div class="logo-container-hero">
+          <a href="about.html" aria-label="O nas">
+            <img
+              src="logo.png"
+              alt="Razem w Głowie Logo"
+              class="hero-logo-img"
+            />
+          </a>
+        </div>
+
+        <h1 class="main-title">Razem w Głowie</h1>
+        <p class="hero-subtitle">
+          Przestrzeń wymiany myśli, wsparcia i rozwoju.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="forum.html">Dołącz do dyskusji</a>
+          <a
+            class="btn btn-secondary"
+            href="ankieta.html"
+            >Wypełnij ankietę</a
+          >
+        </div>
+      </div>
+      <div class="glow-effect"></div>
+    </section>
+
+    <section class="info-section">
+      <div class="container">
+        <h2 class="section-title">Centrum Aktywności</h2>
+
+        <div class="cards-grid">
+          <div class="card">
+            <div class="icon-glow">🧠</div>
+            <h3>Baza Wiedzy (Wiki)</h3>
+            <p>
+              Zrozum mechanizmy ludzkiego umysłu. Przeglądaj artykuły i
+              definicje.
+            </p>
+            <a href="wiki.html" class="card-link">Przeglądaj Wiki &rarr;</a>
+          </div>
+
+          <div class="card">
+            <div class="icon-glow">👥</div>
+            <h3>Forum Społeczności</h3>
+            <p>
+              Nie jesteś sam. Wymieniaj się doświadczeniami i znajdź wsparcie w
+              grupie.
+            </p>
+            <a href="forum.html" class="card-link">Przejdź do forum &rarr;</a>
+          </div>
+
+          <div class="card">
+            <div class="icon-glow">✨</div>
+            <h3>Ankieta samopoczucia</h3>
+            <p>Krótka ankieta o samopoczuciu z ostatnich 2 tygodni.</p>
+            <a
+              href="ankieta.html"
+              class="card-link"
+              >Wypełnij ankietę &rarr;</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-section" id="specjalisci">
+      <div class="container">
+        <h2 class="section-title">Bezpłatne Telefony Zaufania</h2>
+        <p class="section-subtitle">
+          Potrzebujesz pomocy? Skontaktuj się z odpowiednim telefonem zaufania.
+        </p>
+
+        <div class="cards-grid">
+          <div class="card">
+            <h3>Telefon Zaufania dla Dzieci i Młodzieży</h3>
+            <p>Czynny 24/7, anonimowy i bezpłatny.</p>
+            <a href="tel:116111" class="card-link"
+              ><i class="fa-solid fa-phone call-icon" aria-hidden="true"></i
+              >Zadzwoń: 116 111</a
+            >
+          </div>
+
+          <div class="card">
+            <h3>Dziecięcy Telefon Zaufania Rzecznika Praw Dziecka</h3>
+            <p>Możesz zadzwonić lub napisać na czacie internetowym.</p>
+            <a href="tel:800121212" class="card-link"
+              ><i class="fa-solid fa-phone call-icon" aria-hidden="true"></i
+              >Zadzwoń: 800 12 12 12</a
+            >
+          </div>
+
+          <div class="card">
+            <h3>Telefon dla Rodziców i Nauczycieli</h3>
+            <p>Wsparcie w sprawach bezpieczeństwa dzieci.</p>
+            <a href="tel:800100100" class="card-link"
+              ><i class="fa-solid fa-phone call-icon" aria-hidden="true"></i
+              >Zadzwoń: 800 100 100</a
+            >
+          </div>
+
+          <div class="card">
+            <h3>Kryzys psychiczny</h3>
+            <p>Całodobowa pomoc w kryzysie psychicznym oraz wsparcie emocjonalne dla dorosłych.</p>
+            <a href="tel:800702222" class="card-link"
+              ><i class="fa-solid fa-phone call-icon" aria-hidden="true"></i
+              >Zadzwoń: 800 70 2222</a
+            >
+            <a href="tel:116123" class="card-link"
+              ><i class="fa-solid fa-phone call-icon" aria-hidden="true"></i
+              >Zadzwoń: 116 123</a
+            >
+          </div>
+
+          <div class="card">
+            <h3>Przemoc</h3>
+            <p>Pomoc dla osób dotkniętych przemocą domową oraz wsparcie policyjne.</p>
+            <a href="tel:800120002" class="card-link"
+              ><i class="fa-solid fa-phone call-icon" aria-hidden="true"></i
+              >Zadzwoń: 800 120 002</a
+            >
+            <a href="tel:800120226" class="card-link"
+              ><i class="fa-solid fa-phone call-icon" aria-hidden="true"></i
+              >Zadzwoń: 800 120 226</a
+            >
+          </div>
+
+          <div class="card">
+            <h3>Uzależnienia</h3>
+            <p>Telefon zaufania w sprawie narkotyków i uzależnień.</p>
+            <a href="tel:800199990" class="card-link"
+              ><i class="fa-solid fa-phone call-icon" aria-hidden="true"></i
+              >Zadzwoń: 800 199 990</a
+            >
+          </div>
+
+          <div class="card">
+            <h3>Zaginione dzieci</h3>
+            <p>Pomoc w sprawie zaginionych dzieci i nastolatków oraz wsparcie dla rodzin.</p>
+            <a href="tel:116000" class="card-link"
+              ><i class="fa-solid fa-phone call-icon" aria-hidden="true"></i
+              >Zadzwoń: 116 000</a
+            >
+          </div>
+
+          <div class="card">
+            <h3>Pomoc online / czat</h3>
+            <p>Wsparcie psychologiczne dostępne przez internet (czat i formularze pomocowe).</p>
+            <a href="tel:800702222" class="card-link"
+              ><i class="fa-solid fa-phone call-icon" aria-hidden="true"></i
+              >Zadzwoń: 800 70 2222</a
+            >
+            <a
+              href="https://centrumwsparcia.pl/"
+              class="card-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><i class="fa-solid fa-globe call-icon" aria-hidden="true"></i
+              >Strona: centrumwsparcia.pl</a
+            >
+          </div>
+
+          <div class="card">
+            <h3>Nagłe sytuacje</h3>
+            <p>Numer alarmowy - dzwoń w sytuacji zagrożenia życia lub zdrowia.</p>
+            <a href="tel:112" class="card-link"
+              ><i class="fa-solid fa-phone call-icon" aria-hidden="true"></i
+              >Zadzwoń: 112</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container footer-content">
+        <div class="footer-left">
+          <div class="footer-icons">
+            <a
+              class="social-link insta-link"
+              href="https://www.instagram.com/razem_wglowie?igsh=ZzI2NHZwNTN1bHJ4&utm_source=qra"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
+              <img
+                class="social-icon insta"
+                src="instagram.png"
+                alt="Instagram"
+              />
+            </a>
+            <a
+              class="social-link"
+              href="https://www.tiktok.com/@razem_w_glowie"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="TikTok"
+            >
+              <i class="social-glyph fa-brands fa-tiktok" aria-hidden="true"></i>
+            </a>
+            <a
+              class="social-link"
+              href="mailto:razemwglowie@gmail.com"
+              aria-label="Mail"
+            >
+              <i class="social-glyph fa-regular fa-envelope" aria-hidden="true"></i>
+            </a>
+          </div>
+          <a class="footer-email" href="mailto:razemwglowie@gmail.com">razemwglowie@gmail.com</a>
+        </div>
+        <p class="footer-copy">
+          &copy; 2026 Razem w Głowie.
+        </p>
+      </div>
+    </footer>
+
+    <script type="module" src="auth-session.js"></script>
+    <script type="module" src="profile-ui.js"></script>
+    <script type="module" src="profile-storage.js"></script>
+  </body>
+</html>

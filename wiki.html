@@ -1,0 +1,2891 @@
+﻿<!doctype html>
+<html lang="pl">
+  <head>
+    <link rel="icon" type="image/png" href="logo.png" />
+    <link rel="apple-touch-icon" href="logo.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Razem w Głowie - Wiki</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="wiki.css" />
+    <link rel="stylesheet" href="profile-ui.css" />
+    <link rel="stylesheet" href="footer.css" />
+    <script>
+      (() => {
+        const savedTheme = localStorage.getItem("profileTheme");
+        if (savedTheme === "light") {
+          window.addEventListener("DOMContentLoaded", () => {
+            document.body.classList.add("light-mode");
+          });
+        }
+      })();
+    </script>
+  </head>
+  <body class="light-mode">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="logo-wrapper-small">
+          <img src="logo.png" alt="Logo" class="nav-logo-img" />
+          <span class="logo-text">Razem w Głowie</span>
+        </div>
+        <nav class="topbar-nav">
+          <ul>
+            <li><a href="index.html">Strona główna</a></li>
+            <li><a href="forum.html">Forum</a></li>
+            <li><a href="wiki.html" class="active">Baza wiedzy</a></li>
+            <li>
+              <a
+                href="ankieta.html"
+                >Ankieta</a
+              >
+            </li>
+            <li><a href="index.html#specjalisci">Specjaliści</a></li>
+            <li><a href="about.html">O nas</a></li>
+            <li><a href="admin.html" id="adminNavLink" style="display: none">Panel admina</a></li>
+          </ul>
+        </nav>
+        <div class="topbar-right"></div>
+      </div>
+    </header>
+
+    <main class="page">
+      <section class="intro">
+        <div class="intro-card">
+          <p class="eyebrow">Wiki zdrowia psychicznego</p>
+          <h1>Czym są zaburzenia psychiczne</h1>
+          <p class="intro-lead">
+          Zaburzenia psychiczne to anomalie o podłożu psychicznym, które
+          upośledzają codzienne funkcjonowanie i wpływają na emocje, myśli
+          oraz zachowanie. To nie jest kilka gorszych dni, ale długotrwały
+          problem, który może rozwijać się latami albo pojawić się nagle.
+          </p>
+          <p class="intro-lead" style="margin-top: 12px">
+            W odpowiedzi na trudne, stresujące sytuacje organizm może uruchamiać
+            wzorce zachowań, które z czasem stają się destrukcyjne. Dlatego
+            wczesne rozpoznanie i szybkie wsparcie są bardzo ważne.
+          </p>
+        </div>
+        <div class="intro-panel">
+          <h3>Najważniejsze kategorie zaburzeń</h3>
+          <ul>
+            <li>zaburzenia lękowe - przewlekły, irracjonalny lęk</li>
+            <li>
+              zaburzenia obsesyjno-kompulsywne - natrętne myśli i kompulsje
+            </li>
+            <li>
+              zaburzenia psychotyczne - halucynacje, urojenia, utrata kontaktu z
+              rzeczywistością
+            </li>
+            <li>
+              zaburzenia afektywne - silne wahania nastroju (depresja, mania)
+            </li>
+            <li>
+              zaburzenia psychosomatyczne - objawy ciała związane z długim
+              stresem
+            </li>
+            <li>zaburzenia neurorozwojowe - np. ADHD</li>
+            <li>
+              zaburzenia osobowości - utrwalone wzorce utrudniające
+              funkcjonowanie
+            </li>
+          </ul>
+        </div>
+      </section>
+      <section class="library">
+        <h2 class="section-title">Spis chorób, objawy, krótka definicja</h2>
+        <ul class="topic-list">
+          <li>
+            <button class="topic-button" type="button" data-topic="depresja" aria-controls="depresjaArticle" aria-expanded="false">
+              Depresja (zaburzenia nastroju)
+            </button>
+          </li>
+          <li>
+            <button class="topic-button" type="button" data-topic="schizofrenia" aria-controls="schizofreniaArticle" aria-expanded="false">
+              Schizofrenia (psychozy)
+            </button>
+          </li>
+          <li>
+            <button class="topic-button" type="button" data-topic="odzywianie" aria-controls="odzywianieArticle" aria-expanded="false">
+              Zaburzenia odżywiania
+            </button>
+          </li>
+          <li>
+            <button class="topic-button" type="button" data-topic="lekowe" aria-controls="lekoweArticle" aria-expanded="false">
+              Zaburzenia lękowe
+            </button>
+          </li>
+          <li>
+            <button class="topic-button" type="button" data-topic="osobowosci" aria-controls="osobowosciArticle" aria-expanded="false">
+              Zaburzenia osobowości
+            </button>
+          </li>
+          <li>
+            <button class="topic-button" type="button" data-topic="uzaleznienia" aria-controls="uzaleznieniaArticle" aria-expanded="false">
+              Uzależnienia
+            </button>
+          </li>
+          <li>
+            <button class="topic-button" type="button" data-topic="dwubiegunowa" aria-controls="dwubiegunowaArticle" aria-expanded="false">
+              Choroba dwubiegunowa
+            </button>
+          </li>
+          <li>
+            <button class="topic-button" type="button" data-topic="ocd" aria-controls="ocdArticle" aria-expanded="false">
+              Zaburzenie obsesyjno-kompulsyjne (OCD)
+            </button>
+          </li>
+          <li>
+            <button class="topic-button" type="button" data-topic="ptsd" aria-controls="ptsdArticle" aria-expanded="false">
+              PTSD (zaburzenie stresowe pourazowe)
+            </button>
+          </li>
+          <li>
+            <button class="topic-button" type="button" data-topic="adhd" aria-controls="adhdArticle" aria-expanded="false">
+              ADHD
+            </button>
+          </li>
+          <li>
+            <button class="topic-button" type="button" data-topic="spektrum" aria-controls="spektrumArticle" aria-expanded="false">
+              Spektrum autyzmu
+            </button>
+          </li>
+          <li>
+            <button class="topic-button" type="button" data-topic="bezsennosc" aria-controls="bezsennoscArticle" aria-expanded="false">
+              Bezsenność
+            </button>
+          </li>
+        </ul>
+      </section>
+
+      <section class="article-panel" id="depresjaArticle">
+        <div class="article-header">
+          <p class="article-eyebrow">Temat w wiki</p>
+          <h2>Depresja - zaburzenia nastroju</h2>
+          <p class="article-lead">
+            Depresja to zaburzenie psychiczne objawiające się m.in. obniżeniem
+            nastroju, długotrwałym, nieprzemijającym smutkiem, brakiem energii,
+            sennością, anhedonią (obniżonym lub całkowitym brakiem odczuwania
+            satysfakcji lub przyjemności, z rzeczy które wcześniej wywoływały
+            pozytywne emocje) i myślami autodestrukcyjnymi. Warto zaznaczyć, że
+            depresja nie jest stanem chwilowym związanym z nagłym spadkiem
+            nastroju, lecz długotrwałą chorobą.
+          </p>
+        </div>
+
+        <div class="article-definition">
+          <h3>Krótka definicja</h3>
+          <p>
+            Depresja nie jest stanem chwilowym związanym z nagłym spadkiem
+            nastroju, ale długotrwałą chorobą, która może znacząco utrudniać
+            codzienne funkcjonowanie.
+          </p>
+        </div>
+
+        <div class="article-note">
+          <h3>Co to jest anhedonia</h3>
+          <p>
+            Anhedonia oznacza obniżony lub całkowity brak odczuwania satysfakcji
+            i przyjemności z rzeczy, które wcześniej wywoływały pozytywne
+            emocje.
+          </p>
+        </div>
+
+        <div class="article-grid">
+          <div class="article-block">
+            <h3>Najczęstsze przyczyny</h3>
+            <ul>
+              <li>stres i traumy</li>
+              <li>
+                zaburzenia neuroprzekaźników (niedobory serotoniny,
+                noradrenaliny i dopaminy)
+              </li>
+              <li>
+                genetyka - zwiększone ryzyko, gdy depresja występowała w
+                rodzinie
+              </li>
+              <li>stan zdrowia fizycznego</li>
+              <li>choroby przewlekłe</li>
+              <li>brak kontaktów społecznych</li>
+              <li>sytuacja zawodowa lub szkolna</li>
+            </ul>
+          </div>
+          <div class="article-block">
+            <h3>Objawy, które często występują</h3>
+            <ul>
+              <li>obniżony nastrój i długotrwały smutek</li>
+              <li>brak energii i szybkie męczenie się</li>
+              <li>senność lub inne zaburzenia snu</li>
+              <li>utrata odczuwania przyjemności</li>
+              <li>myśli autodestrukcyjne</li>
+              <li>spadek sprawności w codziennym życiu</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="article-grid">
+          <div class="article-block">
+            <h3>Poziomy depresji - nasilenie objawów</h3>
+            <ul>
+              <li>
+                łagodna (wysokofunkcjonująca): osoba wykonuje obowiązki, ale
+                cierpi wewnętrznie
+              </li>
+              <li>
+                umiarkowana: choroba wyraźnie utrudnia funkcjonowanie i pojawia
+                się izolacja
+              </li>
+              <li>
+                ciężka: głęboki smutek, skrajne wyczerpanie, myśli samobójcze i
+                często objawy psychotyczne
+              </li>
+            </ul>
+          </div>
+          <div class="article-block">
+            <h3>Leczenie</h3>
+            <ul>
+              <li>farmakoterapia prowadzona przez psychiatrę</li>
+              <li>
+                psychoterapia pomagająca zrozumieć chorobę i wypracować
+                strategie radzenia sobie
+              </li>
+              <li>
+                w ciężkich przypadkach natychmiastowe leczenie i hospitalizacja
+              </li>
+              <li>
+                łączenie leczenia farmakologicznego i psychoterapii zwykle daje
+                najlepsze efekty
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="article-note">
+          <h3>Ważne</h3>
+          <p>
+            Bez względu na stopień nasilenia depresja może zagrażać życiu i
+            zdrowiu oraz znacząco wpływać na funkcjonowanie. Dlatego wczesne
+            rozpoznanie i rozpoczęcie leczenia są kluczowe.
+          </p>
+        </div>
+
+        <div class="article-grid">
+          <div class="article-block">
+            <h3>Jak depresja wpływa na codzienne życie</h3>
+            <ul>
+              <li>spadek wydajności w nauce i pracy mimo dużego wysiłku</li>
+              <li>trudność z rozpoczynaniem nawet prostych zadań</li>
+              <li>wycofanie z relacji i utrata kontaktu z bliskimi</li>
+              <li>zaniedbywanie snu, jedzenia i podstawowej samoopieki</li>
+              <li>poczucie winy, beznadziejności i braku sprawczości</li>
+            </ul>
+          </div>
+          <div class="article-block">
+            <h3>Co pomaga w leczeniu długoterminowym</h3>
+            <ul>
+              <li>regularne wizyty i trzymanie planu terapii</li>
+              <li>monitorowanie nastroju oraz jakości snu</li>
+              <li>mały, realistyczny plan dnia na gorsze okresy</li>
+              <li>budowanie sieci wsparcia i proszenie o pomoc wcześnie</li>
+              <li>unikanie alkoholu i substancji pogarszajacych nastrój</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="article-note" data-extra="v2-depresja">
+          <h3>Dodatkowa wskazówka</h3>
+          <p>
+            Gdy objawy utrzymują się tygodniami, warto nie czekać na "samo
+            przejdzie". Wczesna interwencja skraca czas cierpienia i zmniejsza
+            ryzyko nawrotów.
+          </p>
+        </div>
+
+        <section class="video-section">
+          <h3>Materiały wideo (YouTube)</h3>
+          <div class="video-grid">
+            <div class="video-card">
+              <div class="video-embed">
+                <iframe loading="lazy"
+                  data-src="https://www.youtube.com/embed/sE7102x1DmQ"
+                  title="Depresja - materiał 1"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                    web-share;
+                  "
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <p class="video-caption">Depresja - materiał 1</p>
+            </div>
+            <div class="video-card">
+              <div class="video-embed">
+                <iframe loading="lazy"
+                  data-src="https://www.youtube.com/embed/6-iy5ZyWlZU"
+                  title="Depresja - materiał 2"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                    web-share;
+                  "
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <p class="video-caption">Depresja - materiał 2</p>
+            </div>
+            <div class="video-card">
+              <div class="video-embed">
+                <iframe loading="lazy"
+                  data-src="https://www.youtube.com/embed/J9fvjSN_KgM"
+                  title="Depresja - materiał 3"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                    web-share;
+                  "
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <p class="video-caption">Depresja - materiał 3</p>
+            </div>
+          </div>
+        </section>
+      </section>
+      <section class="article-panel" id="schizofreniaArticle">
+        <div class="article-header">
+          <p class="article-eyebrow">Temat w wiki</p>
+          <h2>Schizofrenia - najważniejsze informacje</h2>
+          <p class="article-lead">
+            Schizofrenia to ciężka, przewlekła choroba psychiczna z grupy
+            psychoz. Osoba chora może tracić prawidłowy kontakt z
+            rzeczywistością i inaczej postrzegać siebie, innych i świat.
+          </p>
+        </div>
+
+        <div class="article-note">
+          <h3>Kiedy najczęściej się ujawnia</h3>
+          <p>
+            Choroba najczęściej pojawia się między 16. a 30. rokiem życia.
+            Wpływa na emocje, zachowanie, relacje oraz zdolność do nauki i
+            pracy.
+          </p>
+        </div>
+
+        <div class="article-grid">
+          <div class="article-block">
+            <h3>Objawy pozytywne</h3>
+            <ul>
+              <li>omamy (np. słyszenie głosów)</li>
+              <li>urojenia (silne fałszywe przekonania)</li>
+              <li>dezorganizacja myślenia i mowy</li>
+              <li>dziwaczne, chaotyczne zachowanie</li>
+            </ul>
+          </div>
+          <div class="article-block">
+            <h3>Objawy negatywne i poznawcze</h3>
+            <ul>
+              <li>spłycenie emocji, brak motywacji</li>
+              <li>wycofanie społeczne, utrata radości życia</li>
+              <li>zaniedbywanie higieny i codziennych obowiązków</li>
+              <li>problemy z pamięcią, koncentracją i planowaniem</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="article-grid">
+          <div class="article-block">
+            <h3>Przyczyny i czynniki ryzyka</h3>
+            <ul>
+              <li>wieloczynnikowe podłoże choroby</li>
+              <li>predyspozycje genetyczne</li>
+              <li>
+                zaburzenia pracy neuroprzekaźników (dopamina, glutaminian)
+              </li>
+              <li>powikłania okoloporodowe, urazy mózgu, długotrwały stres</li>
+              <li>trudne doświadczenia życiowe i używanie narkotyków</li>
+            </ul>
+          </div>
+          <div class="article-block">
+            <h3>Najczęściej opisywane postacie</h3>
+            <ul>
+              <li>paranoidalna - przewaga omamów i urojeń</li>
+              <li>
+                hebefreniczna - chaotyczne zachowanie i nieadekwatne emocje
+              </li>
+              <li>katatoniczna - poważne zaburzenia ruchu</li>
+              <li>postacie mieszane i o słabszym nasileniu objawów</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="article-note">
+          <h3>Leczenie</h3>
+          <p>
+            Podstawa leczenia to farmakoterapia przeciwpsychotyczna, a także
+            psychoterapia, trening umiejętności społecznych i wsparcie rodziny.
+            W ciężkich przypadkach potrzebna jest hospitalizacja.
+          </p>
+        </div>
+
+        <div class="article-note">
+          <h3>Kiedy pilnie szukać pomocy</h3>
+          <p>
+            Jeśli pojawiają się omamy, silne urojenia, nagła dezorganizacja
+            zachowania lub ryzyko zrobienia sobie krzywdy, potrzebny jest szybki
+            kontakt z lekarzem psychiatrą albo z numerem alarmowym 112.
+          </p>
+        </div>
+
+        <div class="article-grid">
+          <div class="article-block">
+            <h3>Wczesne sygnały ostrzegawcze</h3>
+            <ul>
+              <li>narastająca podejrzliwość i trudność w zaufaniu</li>
+              <li>problemy ze snem i dezorganizacja rytmu dobowego</li>
+              <li>
+                spadek koncentracji oraz gorsze funkcjonowanie w szkole/pracy
+              </li>
+              <li>izolowanie się i wyraźna zmiana zachowania</li>
+              <li>nieadekwatne reakcje emocjonalne do sytuacji</li>
+            </ul>
+          </div>
+          <div class="article-block">
+            <h3>Wsparcie bliskich w praktyce</h3>
+            <ul>
+              <li>spokojna komunikacja bez wyśmiewania objawów</li>
+              <li>pomoc w utrzymaniu rutyny dnia i leczenia</li>
+              <li>wspólny plan kryzysowy na okresy pogorszenia</li>
+              <li>regularny kontakt z lekarzem i terapeutą</li>
+              <li>
+                dbanie o bezpieczeństwo przy silnych objawach psychotycznych
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="article-note" data-extra="v2-schizofrenia">
+          <h3>Dodatkowa wskazówka</h3>
+          <p>
+            Stabilizacja objawów bywa możliwa przez lata, jeśli leczenie jest
+            regularne, a nawroty są wychwytywane na wczesnym etapie.
+          </p>
+        </div>
+
+        <section class="video-section">
+          <h3>Materiały wideo (YouTube)</h3>
+          <div class="video-grid">
+            <div class="video-card">
+              <div class="video-embed">
+                <iframe loading="lazy"
+                  data-src="https://www.youtube.com/embed/ncS1rXxH84w"
+                  title="Schizofrenia - materiał 1"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                    web-share;
+                  "
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <p class="video-caption">Schizofrenia - materiał 1</p>
+            </div>
+            <div class="video-card">
+              <div class="video-embed">
+                <iframe loading="lazy"
+                  data-src="https://www.youtube.com/embed/FdLtlvDaEM8"
+                  title="Schizofrenia - materiał 2"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                    web-share;
+                  "
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <p class="video-caption">Schizofrenia - materiał 2</p>
+            </div>
+            <div class="video-card">
+              <div class="video-embed">
+                <iframe loading="lazy"
+                  data-src="https://www.youtube.com/embed/mkdvwoIuIi4"
+                  title="Schizofrenia - materiał 3"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                    web-share;
+                  "
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <p class="video-caption">Schizofrenia - materiał 3</p>
+            </div>
+          </div>
+        </section>
+      </section>
+      <section class="article-panel" id="odzywianieArticle">
+        <div class="article-header">
+          <p class="article-eyebrow">Temat w wiki</p>
+          <h2>Zaburzenia odżywiania - najważniejsze informacje</h2>
+          <p class="article-lead">
+            Zaburzenia odżywiania to schorzenia, w których dochodzi do
+            zaburzonego stosunku do jedzenia, masy ciała i własnego wyglądu.
+            Osoba chora często nie postrzega swojego ciała realistycznie i
+            odczuwa silny lęk przed przytyciem.
+          </p>
+        </div>
+
+        <div class="article-definition">
+          <h3>Krótka definicja</h3>
+          <p>
+            To grupa zaburzeń, w których osoba nie postrzega swojego ciała
+            realistycznie, odczuwa silny lęk przed przytyciem i stopniowo traci
+            kontrolę nad zdrowym wzorcem jedzenia.
+          </p>
+        </div>
+        <div class="article-note">
+
+          <!-- Do tąd -->
+  <h3>Dlaczego to jest groźne</h3>
+  <p>
+    Nieleczone zaburzenia odżywiania mogą prowadzić do wyniszczenia
+    organizmu, zaburzeń hormonalnych, osłabienia serca, spadku energii
+    oraz nasilonych trudności emocjonalnych, takich jak lęk i depresja.
+  </p>
+</div>
+
+<div class="article-grid">
+  <div class="article-block">
+    <h3>Typowe objawy psychiczne i behawioralne</h3>
+    <ul>
+      <li>obsesyjne myślenie o wadze i wyglądzie</li>
+      <li>restrykcyjne liczenie kalorii</li>
+      <li>głodzenie się lub napady objadania</li>
+      <li>wymioty i nadużywanie środków przeczyszczających</li>
+      <li>poczucie winy po jedzeniu</li>
+      <li>silny lęk przed przytyciem</li>
+    </ul>
+  </div>
+  <div class="article-block">
+    <h3>Objawy fizyczne i emocjonalne</h3>
+    <ul>
+      <li>osłabienie, zawroty głowy, zmęczenie</li>
+      <li>problemy ze snem i koncentracją</li>
+      <li>wahania nastroju i drażliwość</li>
+      <li>depresja i nasilony lęk</li>
+      <li>wycofanie społeczne</li>
+      <li>spadek codziennej sprawności</li>
+    </ul>
+  </div>
+</div>
+
+<div class="article-grid">
+  <div class="article-block">
+    <h3>Możliwe przyczyny</h3>
+    <ul>
+      <li>presja kulturowa na szczupłą sylwetkę</li>
+      <li>niska samoocena i perfekcjonizm</li>
+      <li>długotrwały stres i trudne wydarzenia życiowe</li>
+      <li>problemy rodzinne i relacyjne</li>
+      <li>trudności z regulacją emocji</li>
+    </ul>
+  </div>
+  <div class="article-block">
+    <h3>Najczęściej opisywane rodzaje</h3>
+    <ul>
+      <li>anoreksja – celowe ograniczanie jedzenia</li>
+      <li>bulimia – objadanie i zachowania kompensacyjne</li>
+      <li>kompulsywne objadanie – utrata kontroli nad jedzeniem</li>
+      <li>ortoreksja – obsesja na punkcie "czystego" jedzenia</li>
+      <li>bigoreksja – chorobliwe skupienie na muskulaturze</li>
+    </ul>
+  </div>
+</div>
+ 
+
+ <div class="article-grid">
+  <div class="article-block">
+    <h3>Leczenie</h3>
+    <ul>
+      <li>psychoterapia jako podstawa leczenia</li>
+      <li>wsparcie psychiatryczne, gdy objawy są nasilone</li>
+      <li>współpraca z dietetykiem klinicznym</li>
+      <li>odbudowa regularnych nawyków żywieniowych</li>
+      <li>w cięższych przypadkach leczenie szpitalne</li>
+    </ul>
+  </div>
+  <div class="article-block">
+    <h3>Wsparcie na co dzień</h3>
+    <ul>
+      <li>regularne posiłki i stabilny rytm dnia</li>
+      <li>ograniczenie treści wzmacniających presję wyglądu</li>
+      <li>rozmowa z zaufaną osobą bez oceniania</li>
+      <li>wczesna reakcja na nawrót objawów</li>
+      <li>stały kontakt ze specjalistą</li>
+    </ul>
+  </div>
+</div>
+
+<div class="article-note">
+  <h3>Kiedy pilnie szukać pomocy</h3>
+  <p>
+    Jeśli pojawia się szybka utrata masy ciała, omdlenia, objawy
+    odwodnienia, częste wymioty albo myśli o zrobieniu sobie krzywdy,
+    potrzebny jest pilny kontakt z lekarzem lub numerem alarmowym 112.
+  </p>
+</div>
+
+<div class="article-grid">
+  <div class="article-block">
+    <h3>Wczesne sygnały ostrzegawcze</h3>
+    <ul>
+      <li>coraz częstsze pomijanie posiłków i wymówki przy jedzeniu</li>
+      <li>silna koncentracja na "idealnej" wadze i centymetrach</li>
+      <li>unikanie wspólnych posiłków z rodziną lub znajomymi</li>
+      <li>nagły wzrost aktywności fizycznej jako "kara" za jedzenie</li>
+      <li>wahania nastroju związane bezpośrednio z jedzeniem</li>
+      <li>
+        powtarzalne rytuały: dzielenie jedzenia, wolne jedzenie,
+        ukrywanie porcji
+      </li>
+    </ul>
+  </div>
+  <div class="article-block">
+    <h3>Skutki długotrwałego trwania zaburzenia</h3>
+    <ul>
+      <li>niedobory witamin i minerałów, osłabienie odporności</li>
+      <li>zaburzenia pracy serca, spadki ciśnienia, omdlenia</li>
+      <li>problemy hormonalne i rozregulowanie cyklu</li>
+      <li>pogorszenie koncentracji, pamięci i sprawności poznawczej</li>
+      <li>nasilenie lęku, depresji i poczucia izolacji</li>
+      <li>wzrost ryzyka nawrotów bez ciągłości leczenia</li>
+    </ul>
+  </div>
+</div>
+
+<div class="article-note">
+  <h3>Jak wspierać osobę, która choruje</h3>
+  <p>
+    Najbardziej pomaga spokój, cierpliwość i brak oceniania. Dobrze
+    działa rozmowa oparta na trosce, bez komentowania wagi, wyglądu i
+    ilości jedzenia. Wsparcie powinno koncentrować się na zdrowiu,
+    emocjach oraz regularnym kontakcie ze specjalistami.
+  </p>
+</div>
+
+<div class="article-grid">
+  <div class="article-block">
+    <h3>Praktyczny plan dnia przy zdrowieniu</h3>
+    <ul>
+      <li>stałe pory posiłków i snu, nawet gdy brak apetytu</li>
+      <li>monitorowanie samopoczucia, nie tylko masy ciała</li>
+      <li>krótka lista bezpiecznych dań na trudniejsze dni</li>
+      <li>codzienny kontakt z jedną osobą wspierającą</li>
+      <li>małe kroki zamiast skrajnych zmian i "idealnych" planów</li>
+      <li>regularne wizyty kontrolne i notowanie objawów</li>
+    </ul>
+  </div>
+  <div class="article-block">
+    <h3>Czego unikać podczas zdrowienia</h3>
+    <ul>
+      <li>porównywania ciała do innych osób i social mediów</li>
+      <li>komentarzy typu "po prostu jedz normalnie"</li>
+      <li>restrykcyjnych diet bez wskazań medycznych</li>
+      <li>izolowania się i ukrywania objawów przed bliskimi</li>
+      <li>odstawiania terapii po krótkiej poprawie</li>
+      <li>samodzielnego "leczenia" bez opieki specjalisty</li>
+    </ul>
+  </div>
+</div>
+
+<div class="article-note">
+  <h3>Dlaczego leczenie bywa długie</h3>
+  <p>
+    Zaburzenia odżywiania obejmują jednocześnie ciało, emocje i sposób
+    myślenia. Dlatego zdrowienie to proces etapowy: najpierw
+    stabilizacja zdrowia fizycznego, potem utrwalanie nowych nawyków,
+    praca nad samooceną i zapobieganie nawrotom.
+  </p>
+</div>
+
+<div class="article-grid">
+  <div class="article-block">
+    <h3>Jak zaburzenia odżywiania niszczą zdrowie</h3>
+    <ul>
+      <li>niedobory składników odżywczych i przewlekłe zmęczenie</li>
+      <li>zaburzenia hormonalne oraz osłabienie organizmu</li>
+      <li>spadek koncentracji i wydajności poznawczej</li>
+      <li>nasilenie lęku, depresji i poczucia izolacji</li>
+      <li>ryzyko powikłań kardiologicznych i metabolicznych</li>
+    </ul>
+  </div>
+  <div class="article-block">
+    <h3>Elementy skutecznego leczenia</h3>
+    <ul>
+      <li>współpraca psychiatry, psychoterapeuty i dietetyka</li>
+      <li>regularne monitorowanie zdrowia fizycznego</li>
+      <li>odbudowa relacji z jedzeniem krok po kroku</li>
+      <li>praca nad samooceną i obrazem ciała</li>
+      <li>profilaktyka nawrotów po poprawie</li>
+    </ul>
+  </div>
+</div>
+
+<div class="article-note" data-extra="v2-odzywianie">
+  <h3>Dodatkowa wskazówka</h3>
+  <p>
+    Im szybciej rozpocznie się leczenie, tym większa szansa na
+    ograniczenie skutków somatycznych i pełniejszy powrót do zdrowia.
+  </p>
+</div>
+<section class="video-section">
+  <h3>Materiały wideo (YouTube)</h3>
+  <div class="video-grid">
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe loading="lazy"
+          data-src="https://www.youtube.com/embed/v_d5HmVQ8KI"
+          title="Zaburzenia odżywiania - materiał 1"
+          allow="
+            accelerometer;
+            autoplay;
+            clipboard-write;
+            encrypted-media;
+            gyroscope;
+            picture-in-picture;
+            web-share;
+          "
+          allowfullscreen
+        ></iframe>
+      </div>
+      <p class="video-caption">Zaburzenia odżywiania - materiał 1</p>
+    </div>
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe loading="lazy"
+          data-src="https://www.youtube.com/embed/kJbJPCcL-QI"
+          title="Zaburzenia odżywiania - materiał 2"
+          allow="
+            accelerometer;
+            autoplay;
+            clipboard-write;
+            encrypted-media;
+            gyroscope;
+            picture-in-picture;
+            web-share;
+          "
+          allowfullscreen
+        ></iframe>
+      </div>
+      <p class="video-caption">Zaburzenia odżywiania - materiał 2</p>
+    </div>
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe loading="lazy"
+          data-src="https://www.youtube.com/embed/tBr4gWyWOCU"
+          title="Zaburzenia odżywiania - materiał 3"
+          allow="
+            accelerometer;
+            autoplay;
+            clipboard-write;
+            encrypted-media;
+            gyroscope;
+            picture-in-picture;
+            web-share;
+          "
+          allowfullscreen
+        ></iframe>
+      </div>
+      <p class="video-caption">Zaburzenia odżywiania - materiał 3</p>
+    </div>
+  </div>
+</section>
+
+      </section>
+      <section class="article-panel" id="lekoweArticle">
+  <div class="article-header">
+    <p class="article-eyebrow">Temat w wiki</p>
+    <h2>Zaburzenia lękowe - najważniejsze informacje</h2>
+    <p class="article-lead">
+      Zaburzenia lękowe to utrwalony, silny lęk, który nie pasuje do
+      realnego zagrożenia. Może utrudniać naukę, pracę i codzienne życie.
+    </p>
+  </div>
+
+  <div class="article-definition">
+    <h3>Krótka definicja</h3>
+    <p>
+      Zaburzenia lękowe to stany, w których silny lęk utrzymuje się długo
+      i nie odpowiada realnemu zagrożeniu.
+    </p>
+  </div>
+
+  <div class="article-note">
+    <h3>Rozszerzona charakterystyka</h3>
+    <p>
+      Zaburzenia lękowe (nazywane też zaburzeniami nerwicowymi) to grupa
+      schorzeń, w których występuje duży, nieadekwatny lęk i strach.
+      Nasilenie lęku bywa niewspółmierne do sytuacji i faktycznego
+      zagrożenia, przez co objawy utrudniają codzienne funkcjonowanie.
+    </p>
+  </div>
+
+  <div class="article-grid">
+  <div class="article-block">
+    <h3>Kluczowe obszary przyczyn</h3>
+    <ul>
+      <li>
+        czynniki biologiczne – predyspozycje genetyczne, zaburzenia
+        równowagi neuroprzekaźników (np. serotoniny), nadreaktywność
+        struktur mózgu odpowiedzialnych za strach
+      </li>
+      <li>
+        czynniki psychologiczne – utrwalone wzorce myślenia (np.
+        katastrofizowanie i wyolbrzymianie zagrożeń), wyuczone reakcje
+        lękowe
+      </li>
+      <li>
+        czynniki środowiskowe – przewlekły stres, trudne doświadczenia z
+        dzieciństwa, traumy, brak poczucia bezpieczeństwa lub wsparcia
+      </li>
+    </ul>
+  </div>
+  <div class="article-block">
+    <h3>Najczęstsze rodzaje zaburzeń lękowych</h3>
+    <ul>
+      <li>
+        fobia społeczna – silny lęk przed sytuacjami społecznymi i obawa
+        przed oceną ze strony innych ludzi
+      </li>
+      <li>
+        nerwica lękowa – częste ataki paniki, niekontrolowany lęk i
+        utrzymujący się niepokój
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="article-grid">
+  <div class="article-block">
+    <h3>Najczęstsze objawy</h3>
+    <ul>
+      <li>napięcie i poczucie ciągłej czujności</li>
+      <li>napady paniki i duszność</li>
+      <li>gonitwa myśli, trudność z relaksem</li>
+      <li>bezsenność lub płytki sen</li>
+      <li>objawy z ciała: kołatanie serca, drżenie</li>
+      <li>unikanie sytuacji wywołujących lęk</li>
+    </ul>
+  </div>
+  <div class="article-block">
+    <h3>Co może pomagać</h3>
+    <ul>
+      <li>terapia poznawczo-behawioralna</li>
+      <li>regularny rytm dnia i sen</li>
+      <li>ćwiczenia oddechowe i relaksacja</li>
+      <li>ograniczenie kofeiny i pobudzaczy</li>
+      <li>stopniowe oswajanie trudnych sytuacji</li>
+    </ul>
+  </div>
+</div>
+<div class="article-grid">
+  <div class="article-block">
+    <h3>Praktyczne wskazówki na co dzień</h3>
+    <ul>
+      <li>miej przy sobie krótki plan na atak paniki</li>
+      <li>oddech 4-6: wdech 4 sekundy, wydech 6</li>
+      <li>ogranicz kofeinę po południu</li>
+      <li>zapisuj sytuacje wyzwalające i reakcje</li>
+      <li>ćwicz spokojne ekspozycje, krok po kroku</li>
+    </ul>
+  </div>
+  <div class="article-block">
+    <h3>Wspieranie bliskiej osoby</h3>
+    <ul>
+      <li>zachowaj spokój, nie bagatelizuj lęku</li>
+      <li>pytaj: "jak chcesz, żebym pomógł?"</li>
+      <li>nie zmuszaj do natychmiastowego działania</li>
+      <li>wspieraj małe kroki, nie duże skoki</li>
+      <li>zachęcaj do terapii i regularności</li>
+    </ul>
+  </div>
+</div>
+
+<div class="article-note">
+  <h3>Kiedy szukać pomocy</h3>
+  <p>
+    Jeśli lęk utrzymuje się tygodniami lub miesiącami i ogranicza
+    normalne funkcjonowanie, warto porozmawiać ze specjalistą.
+  </p>
+</div>
+
+<div class="article-grid">
+  <div class="article-block">
+    <h3>Typowe mechanizmy utrwalające lęk</h3>
+    <ul>
+      <li>
+        unikanie trudnych sytuacji, które chwilowo obniża napięcie
+      </li>
+      <li>katastroficzne interpretowanie objawów z ciała</li>
+      <li>
+        ciągła kontrola zagrożenia i przeciążenie układu nerwowego
+      </li>
+      <li>niedobór snu i nadmiar kofeiny nasilające objawy</li>
+      <li>zamykanie się w domu i zawężanie aktywności</li>
+    </ul>
+  </div>
+  <div class="article-block">
+    <h3>Co wzmacnia efekty terapii</h3>
+    <ul>
+      <li>stopniowe ekspozycje na sytuacje wywołujące lęk</li>
+      <li>ćwiczenie regulacji oddechu i napięcia mięśni</li>
+      <li>prowadzenie dziennika wyzwalaczy i reakcji</li>
+      <li>stabilny harmonogram dnia oraz regularny sen</li>
+      <li>kontakt z terapeutą przy pierwszych oznakach nawrotu</li>
+    </ul>
+  </div>
+</div>
+
+<div class="article-note" data-extra="v2-lekowe">
+  <h3>Dodatkowa wskazówka</h3>
+  <p>
+    Objawy lękowe są leczalne, ale poprawa zwykle wymaga regularności i
+    stopniowego oswajania sytuacji, których dotąd się unika.
+  </p>
+</div>
+
+<!-- Gracjan-->
+        <section class="video-section">
+          <h3>Materiały wideo (YouTube)</h3>
+          <div class="video-grid">
+            <div class="video-card">
+              <div class="video-embed">
+                <iframe loading="lazy"
+                  data-src="https://www.youtube.com/embed/oYwjzJY0a58"
+                  title="Zaburzenia lękowe - materiał 1"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                    web-share;
+                  "
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <p class="video-caption">Zaburzenia lękowe - materiał 1</p>
+            </div>
+            <div class="video-card">
+              <div class="video-embed">
+                <iframe loading="lazy"
+                  data-src="https://www.youtube.com/embed/L2UhGQWmlTU"
+                  title="Zaburzenia lękowe - materiał 2"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                    web-share;
+                  "
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <p class="video-caption">Zaburzenia lękowe - materiał 2</p>
+            </div>
+            <div class="video-card">
+              <div class="video-embed">
+                <iframe loading="lazy"
+                  data-src="https://www.youtube.com/embed/9XRp8YkVpR8"
+                  title="Zaburzenia lękowe - materiał 3"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                    web-share;
+                  "
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <p class="video-caption">Zaburzenia lękowe - materiał 3</p>
+            </div>
+          </div>
+        </section>
+      </section>
+      <section class="article-panel" id="osobowosciArticle">
+        <div class="article-header">
+          <p class="article-eyebrow">Temat w wiki</p>
+          <h2>Zaburzenia osobowości - najważniejsze informacje</h2>
+          <p class="article-lead">
+            Zaburzenia osobowości to utrwalone wzorce myślenia i reagowania,
+            które utrudniają relacje i codzienne funkcjonowanie.
+          </p>
+        </div>
+
+        <div class="article-definition">
+          <h3>Krótka definicja</h3>
+          <p>
+            Zaburzenia osobowości to stałe wzorce myślenia i zachowania, które
+            powodują cierpienie i trudności w relacjach.
+          </p>
+        </div>
+
+        <div class="article-note">
+          <h3>Rozszerzona charakterystyka</h3>
+          <p>
+            Zaburzenia osobowości obejmują stany psychiczne związane z
+            nieelastycznym sposobem myślenia, trudnosciami regulacji zachowania
+            i problemami w relacjach z ludzmi. Wzorce te są zwykle utrwalone,
+            dlatego mogą długo utrudniać życie prywatne, szkolne i zawodowe.
+          </p>
+        </div>
+
+        <div class="article-grid">
+          <div class="article-block">
+            <h3>Grupa A (dziwno-ekscentryczna)</h3>
+            <ul>
+              <li>
+                osobowość paranoidalna - nadmierna podejrzliwość i częste
+                dopatrywanie się złych intencji u innych
+              </li>
+              <li>
+                osobowość schizoidalna - wycofanie z kontaktów społecznych i
+                chłód emocjonalny
+              </li>
+            </ul>
+          </div>
+          <div class="article-block">
+            <h3>Grupa B (dramatyczno-niekonsekwentna)</h3>
+            <ul>
+              <li>
+                osobowość borderline (chwiejna emocjonalnie) - silny lęk przed
+                odrzuceniem, niestabilne relacje, ryzyko samookaleczeń
+              </li>
+              <li>
+                osobowość antyspoleczna - lekceważenie norm prawnych i
+                społecznych, niski poziom empatii, sklonność do manipulacji
+              </li>
+              <li>
+                osobowość narcystyczna - przekonanie o własnej wyjątkowości,
+                duża potrzeba podziwu, wykorzystywanie innych
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="article-grid">
+          <div class="article-block">
+            <h3>Grupa C (lękowo-przerażona)</h3>
+            <ul>
+              <li>
+                osobowość unikająca - skrajna nieśmiałość, niskie poczucie wartości, silny lęk przed krytyką
+              </li>
+              <li>
+                osobowość zależna - trudność w samodzielnym podejmowaniu
+                decyzji, silna potrzeba bycia pod opieka
+              </li>
+              <li>
+                osobowość anankastyczna (obsesyjno-kompulsyjna) - nadmierny
+                perfekcjonizm, sztywność zasad i potrzeba kontroli
+              </li>
+            </ul>
+          </div>
+          <div class="article-block">
+            <h3>Przyczyny i czynniki ryzyka</h3>
+            <ul>
+              <li>
+                przyczyny nie są do konca poznane i zwykle maja charakter
+                wieloczynnikowy
+              </li>
+              <li>czynniki genetyczne i indywidualna wrażliwość psychiczna</li>
+              <li>
+                czynniki społeczne, np. zaniedbanie ze strony opiekunów,
+                przemoc emocjonalna lub seksualna w dziecinstwie
+              </li>
+              <li>
+                czynniki biologiczne i neurorozwojowe wplywajace na regulacje
+                emocji i impulsywność
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="article-grid">
+          <div class="article-block">
+            <h3>Najczęstsze objawy</h3>
+            <ul>
+              <li>trudności w relacjach i konflikty</li>
+              <li>silne, nagłe zmiany emocji</li>
+              <li>impulsywność i ryzykowne zachowania</li>
+              <li>poczucie pustki lub braku tożsamości</li>
+              <li>problemy z zaufaniem</li>
+              <li>nadmierna wrażliwość na odrzucenie</li>
+            </ul>
+          </div>
+          <div class="article-block">
+            <h3>Co może pomagać</h3>
+            <ul>
+              <li>psychoterapia ukierunkowana na relacje</li>
+              <li>trening regulacji emocji</li>
+              <li>psychoedukacja i wsparcie rodziny</li>
+              <li>stabilne granice i rytm dnia</li>
+              <li>regularny kontakt ze specjalistą</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="article-grid">
+          <div class="article-block">
+            <h3>Praktyczne wskazówki na co dzień</h3>
+            <ul>
+              <li>prowadz notatki o emocjach i sytuacjach</li>
+              <li>ucz się rozpoznawać pierwsze sygnały napięcia</li>
+              <li>ustal rutyny, które dają poczucie stabilności</li>
+              <li>planuj przerwy w ciągu dnia</li>
+              <li>pracuj nad komunikacją bez oskarżeń</li>
+            </ul>
+          </div>
+          <div class="article-block">
+            <h3>Wspieranie bliskiej osoby</h3>
+            <ul>
+              <li>ustal jasne granice i zasady kontaktu</li>
+              <li>nie eskaluj konfliktu, dawaj czas na uspokojenie</li>
+              <li>doceniaj wysiłek i zmiany</li>
+              <li>rozmawiaj o potrzebach bez oceniania</li>
+              <li>zachęcaj do terapii i regularności</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="article-note">
+          <h3>Kiedy szukać pomocy</h3>
+          <p>
+            Gdy powtarzające się kryzysy emocjonalne i konflikty utrudniają
+            normalne życie, warto skorzystac z pomocy psychoterapeuty.
+          </p>
+        </div>
+
+        <div class="article-grid">
+          <div class="article-block">
+            <h3>Dlaczego te trudności są tak uporczywe</h3>
+            <ul>
+              <li>wzorce reagowania są utrwalone i automatyczne</li>
+              <li>konflikty interpersonalne podtrzymują napięcie</li>
+              <li>silne emocje utrudniają spokojną komunikację</li>
+              <li>trudność zaufania i lęk przed odrzuceniem</li>
+              <li>impulsywność pogarsza decyzje i relacje</li>
+            </ul>
+          </div>
+          <div class="article-block">
+            <h3>Kierunki pracy terapeutycznej</h3>
+            <ul>
+              <li>nauka regulacji emocji i tolerancji napięcia</li>
+              <li>trening komunikacji i stawiania granic</li>
+              <li>rozpoznawanie schematow, które szkodzą relacjom</li>
+              <li>budowanie stabilnej rutyny i samoopieki</li>
+              <li>wzmacnianie odpowiedzialności za własne wybory</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="article-grid">
+          <div class="article-block">
+            <h3>Najpowszechniejsze metody leczenia</h3>
+            <ul>
+              <li>psychoterapia indywidualna i leczenie grupowe</li>
+              <li>w razie potrzeby terapia rodzinna lub terapia par</li>
+              <li>długoterminowa współpraca z psychoterapeuta</li>
+              <li>regularna ocena postępów i modyfikacja planu terapii</li>
+            </ul>
+          </div>
+          <div class="article-block">
+            <h3>Terapie i farmakoterapia</h3>
+            <ul>
+              <li>terapia poznawczo-behawioralna (CBT)</li>
+              <li>terapia dialektyczno-behawioralna (DBT)</li>
+              <li>terapia poznawczo-analityczna</li>
+              <li>
+                leczenie farmakologiczne objawowe: leki przeciwdepresyjne,
+                psychotropowe i stabilizatory nastroju
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="article-note" data-extra="v3-osobowosci">
+          <h3>Dodatkowa wskazówka</h3>
+          <p>
+            Zmiana jest możliwa, ale zwykle wymaga dłuższej terapii i
+            konsekwentnej pracy między sesjami.
+          </p>
+        </div>
+
+        <section class="video-section">
+          <h3>Materiały wideo (YouTube)</h3>
+          <div class="video-grid">
+            <div class="video-card">
+              <div class="video-embed">
+                <iframe loading="lazy"
+                  data-src="https://www.youtube.com/embed/sTGogQjZlo0"
+                  title="Zaburzenia osobowości - materiał 1"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                    web-share;
+                  "
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <p class="video-caption">Zaburzenia osobowości - materiał 1</p>
+            </div>
+            <div class="video-card">
+              <div class="video-embed">
+                <iframe loading="lazy"
+                  data-src="https://www.youtube.com/embed/7ynQHy_hPGg"
+                  title="Zaburzenia osobowości - materiał 2"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                    web-share;
+                  "
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <p class="video-caption">Zaburzenia osobowości - materiał 2</p>
+            </div>
+            <div class="video-card">
+              <div class="video-embed">
+                <iframe loading="lazy"
+                  data-src="https://www.youtube.com/embed/ywlijgDqU2U"
+                  title="Zaburzenia osobowości - materiał 3"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                    web-share;
+                  "
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <p class="video-caption">Zaburzenia osobowości - materiał 3</p>
+            </div>
+          </div>
+        </section>
+      </section>
+      <section class="article-panel" id="uzaleznieniaArticle">
+        <div class="article-header">
+          <p class="article-eyebrow">Temat w wiki</p>
+          <h2>Uzależnienia - najważniejsze informacje</h2>
+          <p class="article-lead">
+            Uzaleznienie to choroba psychiczna, w której czlowiek przestaje
+            panować nad swoim zachowaniem. Może dotyczyć substancji (alkohol,
+            narkotyki, nikotyna, leki), ale tez czynnosci (hazard, internet,
+            gry, zakupy). Na początku zwykle wydaje się, że to tylko "relaks"
+            albo "zabawa", ale z czasem pojawia się przymus i utrata kontroli.
+          </p>
+        </div>
+
+        <div class="article-definition">
+          <h3>Krótka definicja</h3>
+          <p>
+            Według definicji WHO uzależnienie to stan, w którym występuje silny
+            przymus sięgania po substancje lub wykonywania danej czynności oraz
+            trudność w kontrolowaniu tego zachowania, nawet jeśli prowadzi ono
+            do poważnych szkód zdrowotnych, psychicznych i społecznych.
+          </p>
+        </div>
+
+        <div class="article-note">
+          <h3>Dlaczego uzależnienie jest chorobą, a nie "słaba wola"</h3>
+          <p>
+            Uzależnienie zmienia sposób działania mózgu, zwłaszcza obszarów
+            odpowiedzialnych za nagrodę, impulsy i kontrolę zachowania. Dlatego
+            osoba uzależniona często wie, że sobie szkodzi, ale mimo to wraca do
+            nałogu. To nie kwestia braku charakteru, tylko zaburzenia, które
+            wymaga leczenia i wsparcia.
+          </p>
+        </div>
+
+        <div class="article-grid">
+          <div class="article-block">
+            <h3>Jak rozwija się uzależnienie</h3>
+            <ul>
+              <li>
+                faza próbowania: okazjonalne sięganie po substancje lub czynność
+              </li>
+              <li>
+                faza nawyku: częstsze powtarzanie dla ulgi lub przyjemności
+              </li>
+              <li>
+                faza tolerancji: potrzeba większej dawki lub dłuższego czasu
+              </li>
+              <li>faza przymusu: utrata kontroli i trudność w zaprzestaniu</li>
+              <li>
+                faza nawrotów: obietnice poprawy i kolejne powroty do nałogu
+              </li>
+            </ul>
+          </div>
+          <div class="article-block">
+            <h3>Co może uzależniać</h3>
+            <ul>
+              <li>alkohol, nikotyna, narkotyki i niektóre leki</li>
+              <li>hazard i zaklady</li>
+              <li>granie w gry i nadmierne korzystanie z internetu</li>
+              <li>kompulsywne zakupy i inne zachowania nawykowe</li>
+              <li>łącznie kilka nałogów naraz (tzw. uzależnienie mieszane)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="article-grid">
+          <div class="article-block">
+            <h3>Najczęstsze objawy psychiczne i behawioralne</h3>
+            <ul>
+              <li>
+                ciągłe myślenie o piciu, braniu, graniu lub innej czynności
+              </li>
+              <li>obietnice "to ostatni raz" i szybki powrót do nałogu</li>
+              <li>zaniedbywanie obowiązków domowych, szkolnych i zawodowych</li>
+              <li>ukrywanie zachowań, kłamstwa, tłumaczenia i zaprzeczanie</li>
+              <li>konflikty z bliskimi, izolacja i utrata relacji</li>
+              <li>
+                spadek motywacji do rzeczy, które kiedyś dawały satysfakcję
+              </li>
+            </ul>
+          </div>
+          <div class="article-block">
+            <h3>Objawy odstawienia (głównie w uzależnieniach chemicznych)</h3>
+            <ul>
+              <li>nerwowość, rozdrażnienie i silny niepokój</li>
+              <li>problemy ze snem, bezsenność, gonitwa myśli</li>
+              <li>drżenie rąk, potliwość, napięcie mięśniowe</li>
+              <li>spadek nastroju, rozdrażnienie i trudność skupienia</li>
+              <li>
+                w ciężkich przypadkach objawy wymagające pilnej pomocy
+                lekarskiej
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="article-grid">
+          <div class="article-block">
+            <h3>Przyczyny i czynniki ryzyka</h3>
+            <ul>
+              <li>predyspozycje genetyczne i historia uzależnień w rodzinie</li>
+              <li>niskie poczucie własnej wartości i samotność</li>
+              <li>trudne doświadczenia życiowe, trauma, przewlekły stres</li>
+              <li>trudność regulowania emocji i napięcia</li>
+              <li>presja rówieśnicza i środowiskowa</li>
+              <li>łatwy dostęp do substancji lub zachowań uzależniających</li>
+              <li>mechanizm "ucieczki" od problemów i bolesnych emocji</li>
+            </ul>
+          </div>
+          <div class="article-block">
+            <h3>Rodzaje uzależnień</h3>
+            <ul>
+              <li>chemiczne: alkohol, narkotyki, leki, nikotyna</li>
+              <li>behawioralne: hazard, gry, internet, zakupy</li>
+              <li>w obu rodzajach pojawia się utrata kontroli i przymus</li>
+              <li>
+                w obu rodzajach skutki dotykają zdrowia, relacji i finansów
+              </li>
+              <li>w obu rodzajach potrzebna jest profesjonalna pomoc</li>
+            </ul>
+          </div>
+        </div>
+        <!-- Do tąd  -->
+        <div class="article-grid">
+  <div class="article-block">
+    <h3>Konsekwencje nieleczonego uzależnienia</h3>
+    <ul>
+      <li>pogorszenie zdrowia psychicznego i fizycznego</li>
+      <li>nasilenie lęku, depresji i poczucia bezradności</li>
+      <li>problemy w nauce, pracy i codziennym funkcjonowaniu</li>
+      <li>rozpad relacji rodzinnych i towarzyskich</li>
+      <li>problemy finansowe i zadłużenie</li>
+      <li>zwiększone ryzyko zachowań ryzykownych i przemocy</li>
+    </ul>
+  </div>
+  <div class="article-block">
+    <h3>Sygnały alarmowe dla bliskich</h3>
+    <ul>
+      <li>gwałtowne zmiany zachowania i nastroju</li>
+      <li>wyraźny spadek funkcjonowania w szkole lub pracy</li>
+      <li>izolowanie się i ukrywanie aktywności</li>
+      <li>znikające pieniądze, kłamstwa, problemy prawne</li>
+      <li>objawy odstawienia po próbie ograniczenia</li>
+      <li>rezygnacja z dotychczasowych pasji i kontaktów</li>
+    </ul>
+  </div>
+</div>
+
+<div class="article-grid">
+  <div class="article-block">
+    <h3>Leczenie krok po kroku</h3>
+    <ul>
+      <li>uznanie problemu i gotowość do zmiany</li>
+      <li>diagnoza i plan terapii ze specjalistą</li>
+      <li>psychoterapia indywidualna i/lub grupowa</li>
+      <li>w razie potrzeby leczenie farmakologiczne</li>
+      <li>budowanie nowej rutyny i strategii radzenia sobie</li>
+      <li>profilaktyka nawrotów i regularne kontrole</li>
+    </ul>
+  </div>
+  <div class="article-block">
+    <h3>Wsparcie, które realnie pomaga</h3>
+    <ul>
+      <li>wsparcie rodziny bez oceniania i zawstydzania</li>
+      <li>grupy wsparcia, np. Anonimowi Alkoholicy</li>
+      <li>kontakt z poradnią terapii uzależnień</li>
+      <li>korzystanie z bezpłatnej pomocy w placówkach NFZ</li>
+      <li>plan na kryzys i osobę kontaktową "na już"</li>
+      <li>cierpliwość - zdrowienie to proces, nie jednorazowy efekt</li>
+    </ul>
+  </div>
+</div>
+    
+<div class="article-note">
+  <h3>Ważna informacja o nawrotach</h3>
+  <p>
+    Nawrót nie oznacza porażki ani "braku sensu leczenia". Często jest
+    elementem procesu zdrowienia. Najważniejsze to szybko wrócić do
+    terapii, omówić przyczyny nawrotu i wzmocnić plan bezpieczeństwa na
+    kolejne tygodnie.
+  </p>
+</div>
+
+<div class="article-note">
+  <h3>Kiedy pilnie szukać pomocy</h3>
+  <p>
+    Jeśli pojawiają się myśli samobójcze, ciężkie objawy odstawienia,
+    utrata kontaktu z rzeczywistością, agresja albo bezpośrednie
+    zagrożenie zdrowia i życia, potrzebny jest natychmiastowy kontakt z
+    numerem alarmowym 112 oraz pilna konsultacja medyczna.
+  </p>
+</div>
+
+<div class="article-grid">
+  <div class="article-block">
+    <h3>Mechanizm nawrotu</h3>
+    <ul>
+      <li>wyzwalacze: stres, konflikty, samotność, nuda</li>
+      <li>myśli usprawiedliwiające: "tylko raz"</li>
+      <li>powrót do starego zachowania i utrata kontroli</li>
+      <li>poczucie winy, które może napędzać kolejny epizod</li>
+      <li>potrzeba szybkiego powrotu do planu leczenia</li>
+    </ul>
+  </div>
+  <div class="article-block">
+    <h3>Co zwiększa szanse trwałej poprawy</h3>
+    <ul>
+      <li>stały kontakt z terapią i grupą wsparcia</li>
+      <li>usunięcie bodźców związanych z nałogiem</li>
+      <li>plan awaryjny na kryzysowe dni</li>
+      <li>odbudowa relacji, pracy i codziennej struktury</li>
+      <li>regularna aktywność fizyczna i higiena snu</li>
+    </ul>
+  </div>
+</div>
+
+<div class="article-note" data-extra="v2-uzaleznienia">
+  <h3>Dodatkowa wskazówka</h3>
+  <p>
+    Nawrót nie przekreśla leczenia. Kluczowe jest szybkie zatrzymanie
+    spirali i powrót do wsparcia specjalistycznego.
+  </p>
+</div>
+   
+<section class="video-section">
+  <h3>Materiały wideo (YouTube)</h3>
+  <div class="video-grid">
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe loading="lazy"
+          data-src="https://www.youtube.com/embed/rLHvyud1zYY"
+          title="Uzależnienia - materiał 1"
+          allow="
+            accelerometer;
+            autoplay;
+            clipboard-write;
+            encrypted-media;
+            gyroscope;
+            picture-in-picture;
+            web-share;
+          "
+          allowfullscreen
+        ></iframe>
+      </div>
+      <p class="video-caption">Uzależnienia - materiał 1</p>
+    </div>
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe loading="lazy"
+          data-src="https://www.youtube.com/embed/sY3tZdS15GY"
+          title="Uzależnienia - materiał 2"
+          allow="
+            accelerometer;
+            autoplay;
+            clipboard-write;
+            encrypted-media;
+            gyroscope;
+            picture-in-picture;
+            web-share;
+          "
+          allowfullscreen
+        ></iframe>
+      </div>
+      <p class="video-caption">Uzależnienia - materiał 2</p>
+    </div>
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe loading="lazy"
+          data-src="https://www.youtube.com/embed/XlI06ceCXL4"
+          title="Uzależnienia - materiał 3"
+          allow="
+            accelerometer;
+            autoplay;
+            clipboard-write;
+            encrypted-media;
+            gyroscope;
+            picture-in-picture;
+            web-share;
+          "
+          allowfullscreen
+        ></iframe>
+      </div>
+      <p class="video-caption">Uzależnienia - materiał 3</p>
+    </div>
+  </div>
+</section>
+
+      </section>
+      <section class="article-panel" id="dwubiegunowaArticle">
+        <div class="article-header">
+          <p class="article-eyebrow">Temat w wiki</p>
+          <h2>Choroba dwubiegunowa - najważniejsze informacje</h2>
+          <p class="article-lead">
+            Choroba afektywna dwubiegunowa (ChAD) to zaburzenie nastroju, w
+            którym występują epizody depresji oraz manii lub hipomanii. Objawy
+            utrzymują się dniami lub tygodniami i mogą znacząco wpływać na
+            codzienne funkcjonowanie.
+          </p>
+        </div>
+
+        <div class="article-note">
+  <h3>Na czym polega ta choroba</h3>
+  <p>
+    To nie są zwykłe wahania humoru. Epizody trwają dni, tygodnie lub
+    miesiące i mogą prowadzić do poważnych konsekwencji zdrowotnych,
+    rodzinnych, zawodowych i finansowych. Dobra diagnoza oraz
+    systematyczne leczenie znacząco zmniejszają ryzyko nawrotów.
+  </p>
+</div>
+
+<div class="article-grid">
+  <div class="article-block">
+    <h3>Objawy epizodu depresyjnego</h3>
+    <ul>
+      <li>obniżony nastrój i utrata zainteresowań</li>
+      <li>spadek energii, silne zmęczenie i apatia</li>
+      <li>problemy z koncentracją i podejmowaniem decyzji</li>
+      <li>zaburzenia snu i apetytu</li>
+      <li>poczucie winy, beznadziejności, spadek samooceny</li>
+      <li>myśli autodestrukcyjne lub samobójcze</li>
+    </ul>
+  </div>
+  <div class="article-block">
+    <h3>Objawy manii lub hipomanii</h3>
+    <ul>
+      <li>podwyższony lub drażliwy nastrój</li>
+      <li>nadmierna energia i mniejsza potrzeba snu</li>
+      <li>przyspieszenie myślenia i natłok pomysłów</li>
+      <li>nadmierna pewność siebie i lekceważenie ryzyka</li>
+      <li>impulsywne decyzje (wydatki, konflikty, ryzykowne zachowania)</li>
+      <li>w cięższych epizodach możliwe objawy psychotyczne</li>
+    </ul>
+  </div>
+</div>
+ 
+<div class="article-grid">
+  <div class="article-block">
+    <h3>Najczęstsze postacie ChAD</h3>
+    <ul>
+      <li>ChAD typu I - epizody manii i zwykle epizody depresji</li>
+      <li>ChAD typu II - epizody depresji i hipomanii</li>
+      <li>cyklotymia - długotrwałe, lżejsze wahania nastroju</li>
+      <li>postacie mieszane - współwystępowanie objawów przeciwnych biegunów</li>
+    </ul>
+  </div>
+  <div class="article-block">
+    <h3>Przyczyny i czynniki ryzyka</h3>
+    <ul>
+      <li>predyspozycje genetyczne</li>
+      <li>zaburzenia regulacji neuroprzekaźników i rytmu biologicznego</li>
+      <li>przewlekły stres i silne wydarzenia życiowe</li>
+      <li>deprywacja snu i nieregularny tryb dnia</li>
+      <li>alkohol, narkotyki i inne substancje psychoaktywne</li>
+    </ul>
+  </div>
+</div>
+
+<div class="article-grid">
+  <div class="article-block">
+    <h3>Leczenie</h3>
+    <ul>
+      <li>farmakoterapia stabilizująca nastrój prowadzona przez psychiatrę</li>
+      <li>psychoterapia i psychoedukacja pacjenta oraz rodziny</li>
+      <li>regularna kontrola i korekta leczenia przy pierwszych objawach</li>
+      <li>stabilny rytm snu, aktywności i posiłków</li>
+      <li>w ciężkich epizodach konieczna bywa hospitalizacja</li>
+    </ul>
+  </div>
+  <div class="article-block">
+    <h3>Co pomaga na co dzień</h3>
+    <ul>
+      <li>monitorowanie nastroju, snu i poziomu energii</li>
+      <li>plan dnia oparty na regularności i małych krokach</li>
+      <li>ograniczanie impulsywnych decyzji finansowych</li>
+      <li>wczesna reakcja na sygnały ostrzegawcze</li>
+      <li>współpraca z bliskimi i jasny plan kryzysowy</li>
+    </ul>
+  </div>
+</div>
+
+<div class="article-grid">
+  <div class="article-block">
+    <h3>Wskaźniki zbliżającego się epizodu</h3>
+    <ul>
+      <li>zmiana potrzeby snu i rytmu dnia</li>
+      <li>przyspieszenie myślenia lub wyraźny spadek energii</li>
+      <li>nadmierna impulsywność i ryzykowne decyzje</li>
+      <li>wzrost drażliwości lub silna apatia</li>
+      <li>trudność utrzymania stabilnych obowiązków</li>
+    </ul>
+  </div>
+  <div class="article-block">
+    <h3>Stabilizacja długoterminowa</h3>
+    <ul>
+      <li>regularne leczenie i kontrola psychiatryczna</li>
+      <li>stałe godziny snu, aktywności i posiłków</li>
+      <li>wczesna reakcja na pierwsze sygnały pogorszenia</li>
+      <li>wsparcie bliskich i psychoedukacja</li>
+      <li>ograniczenie alkoholu, narkotyków i deprywacji snu</li>
+    </ul>
+  </div>
+</div>
+
+<div class="article-note">
+  <h3>Kiedy pilnie szukać pomocy</h3>
+  <p>
+    Jeśli pojawiają się myśli samobójcze, ryzyko zrobienia sobie krzywdy,
+    nasilona mania z utratą kontroli albo objawy psychotyczne,
+    potrzebny jest natychmiastowy kontakt z lekarzem lub numerem 112.
+  </p>
+</div>
+
+<div class="article-note" data-extra="v3-dwubiegunowa">
+  <h3>Dodatkowa wskazówka</h3>
+  <p>
+    Najlepsze efekty daje profilaktyka: szybkie wychwycenie zmian,
+    regularne leczenie i korekta terapii, zanim epizod w pełni się
+    rozwinie.
+  </p>
+</div>
+
+        <section class="video-section">
+  <h3>Materiały wideo (YouTube)</h3>
+  <div class="video-grid">
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe loading="lazy"
+          data-src="https://www.youtube.com/embed/tst_xmia6Iw"
+          title="Choroba dwubiegunowa - materiał 1"
+          allow="
+            accelerometer;
+            autoplay;
+            clipboard-write;
+            encrypted-media;
+            gyroscope;
+            picture-in-picture;
+            web-share;
+          "
+          allowfullscreen
+        ></iframe>
+      </div>
+      <p class="video-caption">Choroba dwubiegunowa - materiał 1</p>
+    </div>
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe loading="lazy"
+          data-src="https://www.youtube.com/embed/rm350SYq4e0"
+          title="Choroba dwubiegunowa - materiał 2"
+          allow="
+            accelerometer;
+            autoplay;
+            clipboard-write;
+            encrypted-media;
+            gyroscope;
+            picture-in-picture;
+            web-share;
+          "
+          allowfullscreen
+        ></iframe>
+      </div>
+      <p class="video-caption">Choroba dwubiegunowa - materiał 2</p>
+    </div>
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe loading="lazy"
+          data-src="https://www.youtube.com/embed/NgMMzCofhVI"
+          title="Choroba dwubiegunowa - materiał 3"
+          allow="
+            accelerometer;
+            autoplay;
+            clipboard-write;
+            encrypted-media;
+            gyroscope;
+            picture-in-picture;
+            web-share;
+          "
+          allowfullscreen
+        ></iframe>
+      </div>
+      <p class="video-caption">Choroba dwubiegunowa - materiał 3</p>
+    </div>
+  </div>
+</section>
+</section>
+
+      <section class="article-panel" id="ocdArticle">
+        <div class="article-header">
+          <p class="article-eyebrow">Temat w wiki</p>
+          <h2>Zaburzenie obsesyjno-kompulsyjne (OCD) - najważniejsze informacje</h2>
+          <p class="article-lead">
+            OCD to zaburzenie, w którym pojawiają się natrętne myśli (obsesje)
+            i powtarzalne zachowania lub rytuały (kompulsje). Objawy są
+            uciążliwe, zajmują dużo czasu i utrudniają codzienne
+            funkcjonowanie.
+          </p>
+        </div>
+
+        <div class="article-definition">
+  <h3>Krótka definicja</h3>
+  <p>
+    OCD to zaburzenie, w którym obsesje i kompulsje są uporczywe,
+    powtarzalne oraz utrudniają codzienne funkcjonowanie.
+  </p>
+</div>
+
+<div class="article-note">
+  <h3>Co jest potwierdzone klinicznie</h3>
+  <p>
+    W rozpoznaniu OCD kluczowe jest to, że objawy są czasochłonne (często
+    zajmują ponad godzinę dziennie) albo wywołują wyraźne cierpienie i
+    pogorszenie funkcjonowania. To nie jest "dziwactwo" ani "słaba
+    wola", tylko zaburzenie wymagające leczenia.
+  </p>
+</div>
+
+<div class="article-grid">
+  <div class="article-block">
+    <h3>Najczęstsze obsesje</h3>
+    <ul>
+      <li>lęk przed zabrudzeniem, zarazkami lub toksynami</li>
+      <li>natrętna obawa, że komuś stanie się krzywda</li>
+      <li>wątpliwości typu "czy na pewno zamknąłem drzwi/wyłączyłem"</li>
+      <li>potrzeba idealnej symetrii, porządku i "dokładności"</li>
+      <li>natrętne, niechciane treści agresywne, religijne lub seksualne</li>
+    </ul>
+  </div>
+  <div class="article-block">
+    <h3>Najczęstsze kompulsje</h3>
+    <ul>
+      <li>wielokrotne mycie, czyszczenie, odkażanie</li>
+      <li>wielokrotne sprawdzanie zamków, gazu, dokumentów</li>
+      <li>liczenie, powtarzanie słów, rytuały myślowe</li>
+      <li>układanie przedmiotów "idealnie" i redukcja niepewności</li>
+      <li>proszenie o zapewnianie i potwierdzanie przez innych</li>
+    </ul>
+  </div>
+</div>
+   
+  <div class="article-block">
+    <h3>Jak działa błędne koło OCD</h3>
+    <ul>
+      <li>pojawia się obsesja i silny niepokój</li>
+      <li>kompulsja chwilowo obniża napięcie</li>
+      <li>mózg utrwala skojarzenie: "rytuał = ulga"</li>
+      <li>z czasem rośnie częstość i czas trwania rytuałów</li>
+      <li>pojawia się wyczerpanie, unikanie i spadek sprawności</li>
+    </ul>
+  </div>
+  <div class="article-block">
+    <h3>Przyczyny i czynniki ryzyka</h3>
+    <ul>
+      <li>wieloczynnikowe podłoże (biologiczne, psychologiczne, środowiskowe)</li>
+      <li>obciążenie rodzinne i czynniki genetyczne</li>
+      <li>zaburzenia pracy obwodów mózgu odpowiedzialnych za kontrolę reakcji</li>
+      <li>zaburzenia układu serotoninergicznego</li>
+      <li>stres i współistniejące zaburzenia (np. depresja, zaburzenia lękowe)</li>
+    </ul>
+  </div>
+</div>
+
+<div class="article-grid">
+  <div class="article-block">
+    <h3>Leczenie pierwszego wyboru</h3>
+    <ul>
+      <li>psychoterapia poznawczo-behawioralna z ERP</li>
+      <li>ERP: ekspozycja na bodziec i powstrzymanie kompulsji</li>
+      <li>regularna praca między sesjami i stopniowanie trudności</li>
+      <li>psychoedukacja pacjenta oraz bliskich</li>
+      <li>długoterminowe utrwalanie efektów i profilaktyka nawrotów</li>
+    </ul>
+  </div>
+  <div class="article-block">
+    <h3>Leczenie farmakologiczne</h3>
+    <ul>
+      <li>SSRI jako najczęściej stosowana grupa leków</li>
+      <li>w niektórych przypadkach klomipramina</li>
+      <li>farmakoterapia łączona z psychoterapią daje lepsze efekty</li>
+      <li>dobór leku i dawki zawsze prowadzi psychiatra</li>
+      <li>przy oporności na leczenie - strategie specjalistyczne</li>
+    </ul>
+  </div>
+</div>
+     
+<!-- Lecimy Damian -->
+        <div class="article-grid">
+          <div class="article-block">
+            <h3>Wspieranie bliskiej osoby z OCD</h3>
+            <ul>
+              <li>nie zawstydzaj i nie bagatelizuj objawów</li>
+              <li>nie wzmacniaj rytuałów przez stałe uspokajanie</li>
+              <li>wspieraj plan terapii i regularność leczenia</li>
+              <li>doceniaj małe kroki i cierpliwą pracę</li>
+              <li>ustal zasady pomocy wspólnie z terapeuta</li>
+            </ul>
+          </div>
+          <div class="article-block">
+            <h3>Kiedy pilnie szukać pomocy</h3>
+            <ul>
+              <li>myśli samobójcze lub autodestrukcyjne</li>
+              <li>objawy tak nasilone, że uniemożliwiają naukę/pracę</li>
+              <li>prawie cały dzień podporządkowany rytuałom</li>
+              <li>współistniejąca ciężka depresja lub panika</li>
+              <li>brak poprawy mimo leczenia - potrzebna szybka konsultacja</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="article-note" data-extra="v3-ocd">
+          <h3>Dodatkowa wskazówka</h3>
+          <p>
+            Wczesne rozpoznanie i szybkie wdrozenie ERP oraz leczenia
+            psychiatrycznego istotnie poprawia rokowanie. Im szybciej rozpocznie
+            się terapia, tym mniejsze ryzyko utrwalenia objawów.
+          </p>
+        </div>
+
+        <section class="video-section">
+          <h3>Materiały wideo (YouTube)</h3>
+          <div class="video-grid">
+            <div class="video-card">
+              <div class="video-embed">
+                <iframe loading="lazy"
+                  data-src="https://www.youtube.com/embed/xzNpbfIJx2A"
+                  title="OCD - materiał 1"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                    web-share;
+                  "
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <p class="video-caption">OCD - materiał 1</p>
+            </div>
+            <div class="video-card">
+              <div class="video-embed">
+                <iframe loading="lazy"
+                  data-src="https://www.youtube.com/embed/gzP6vDpb830"
+                  title="OCD - materiał 2"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                    web-share;
+                  "
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <p class="video-caption">OCD - materiał 2</p>
+            </div>
+            <div class="video-card">
+              <div class="video-embed">
+                <iframe loading="lazy"
+                  data-src="https://www.youtube.com/embed/Gzvfcb7RHao"
+                  title="OCD - materiał 3"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                    web-share;
+                  "
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <p class="video-caption">OCD - materiał 3</p>
+            </div>
+          </div>
+        </section>
+      </section>
+           <section class="article-panel" id="ptsdArticle">
+  <div class="article-header">
+    <p class="article-eyebrow">Temat w wiki</p>
+    <h2>PTSD - najważniejsze informacje</h2>
+    <p class="article-lead">
+      PTSD (zaburzenie stresowe pourazowe) może rozwinąć się po
+      doświadczeniu lub byciu świadkiem wydarzenia traumatycznego.
+      Typowe są nawroty wspomnień, unikanie bodźców kojarzących się z
+      traumą, nadmierna czujność i trudności w regulacji emocji.
+    </p>
+  </div>
+
+  <div class="article-definition">
+    <h3>Krótka definicja</h3>
+    <p>
+      PTSD to zaburzenie pourazowe, w którym objawy utrzymują się zwykle
+      dłużej niż miesiąc i wyraźnie pogarszają codzienne funkcjonowanie.
+    </p>
+  </div>
+
+  <div class="article-note">
+    <h3>Co jest klinicznie najważniejsze</h3>
+    <p>
+      Rozpoznanie PTSD opiera się na kilku grupach objawów: nawroty
+      traumy, unikanie, negatywne zmiany nastroju i myślenia oraz
+      nadmierne pobudzenie układu nerwowego. Objawy mogą pojawić się
+      od razu albo po czasie i zwykle nie mijają same bez wsparcia.
+    </p>
+  </div>
+<div class="article-grid">
+  <div class="article-block">
+    <h3>Najczęstsze objawy</h3>
+    <ul>
+      <li>nawracające wspomnienia, koszmary, flashbacki</li>
+      <li>silny lęk i napięcie przy bodźcach przypominających traumę</li>
+      <li>unikanie miejsc, osób, rozmów i sytuacji kojarzących się z urazem</li>
+      <li>nadmierna czujność, wystraszalność, drażliwość</li>
+      <li>problemy ze snem, koncentracją i pamięcią</li>
+      <li>poczucie odcięcia emocjonalnego i trudność w relacjach</li>
+    </ul>
+  </div>
+  <div class="article-block">
+    <h3>Częste skutki długoterminowe</h3>
+    <ul>
+      <li>utrzymujące się przeciążenie i zmęczenie psychiczne</li>
+      <li>spadek wydajności w nauce i pracy</li>
+      <li>narastające unikanie i izolacja społeczna</li>
+      <li>współistniejąca depresja lub zaburzenia lękowe</li>
+      <li>ryzyko uzależnień jako formy "samoleczenia"</li>
+    </ul>
+  </div>
+</div>
+
+<div class="article-grid">
+  <div class="article-block">
+    <h3>Przyczyny i czynniki ryzyka</h3>
+    <ul>
+      <li>doświadczenie przemocy, wypadku, katastrofy lub wojny</li>
+      <li>powtarzające się traumy i brak poczucia bezpieczeństwa</li>
+      <li>wcześniejsze zaburzenia psychiczne i wysoki poziom stresu</li>
+      <li>brak wsparcia po traumie i długotrwałe przeciążenie</li>
+      <li>indywidualna podatność biologiczna i psychologiczna</li>
+    </ul>
+  </div>
+  <div class="article-block">
+    <h3>Co pomaga na co dzień</h3>
+    <ul>
+      <li>regularny rytm dnia i stabilne pory snu</li>
+      <li>techniki uziemiania (np. 5-4-3-2-1) i oddech przeponowy</li>
+      <li>ograniczanie alkoholu i stymulantów</li>
+      <li>monitorowanie wyzwalaczy i reakcji organizmu</li>
+      <li>plan bezpieczeństwa na okres silnego napięcia</li>
+    </ul>
+  </div>
+</div>
+      <div class="article-grid">
+  <div class="article-block">
+    <h3>Leczenie o udowodnionej skuteczności</h3>
+    <ul>
+      <li>psychoterapia ukierunkowana na traumę</li>
+      <li>TF-CBT (terapia poznawczo-behawioralna ukierunkowana na traumę)</li>
+      <li>prolonged exposure (terapia przedłużonej ekspozycji)</li>
+      <li>EMDR (odwrażliwianie i przetwarzanie za pomocą ruchu gałek ocznych)</li>
+      <li>farmakoterapia objawowa prowadzona przez psychiatrę</li>
+    </ul>
+  </div>
+  <div class="article-block">
+    <h3>Wspieranie bliskiej osoby</h3>
+    <ul>
+      <li>słuchaj spokojnie, bez nacisku na szczegóły traumy</li>
+      <li>nie bagatelizuj objawów i reakcji stresowych</li>
+      <li>pomagaj utrzymać rutynę i higienę snu</li>
+      <li>wspieraj kontakt ze specjalistą i regularność terapii</li>
+      <li>ustal wspólnie sygnały ostrzegawcze i plan kryzysowy</li>
+    </ul>
+  </div>
+</div>
+
+<div class="article-note">
+  <h3>Kiedy pilnie szukać pomocy</h3>
+  <p>
+    Jeśli pojawiają się myśli samobójcze, samookaleczenia, silne
+    flashbacki z utratą kontroli albo objawy uniemożliwiają codzienne
+    funkcjonowanie, potrzebna jest pilna pomoc psychiatryczna i w razie
+    zagrożenia kontakt z numerem 112.
+  </p>
+</div>
+
+<div class="article-note" data-extra="v3-ptsd">
+  <h3>Dodatkowa wskazówka</h3>
+  <p>
+    Leczenie PTSD wymaga czasu, ale systematyczna terapia i szybka
+    reakcja na nawroty istotnie zmniejszają nasilenie objawów i poprawiają
+    jakość życia.
+  </p>
+</div>
+       <section class="video-section">
+  <h3>Materiały wideo (YouTube)</h3>
+  <div class="video-grid">
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe loading="lazy"
+          data-src="https://www.youtube.com/embed/SLyXCbCIBuA"
+          title="PTSD - materiał 1"
+          allow="
+            accelerometer;
+            autoplay;
+            clipboard-write;
+            encrypted-media;
+            gyroscope;
+            picture-in-picture;
+            web-share;
+          "
+          allowfullscreen
+        ></iframe>
+      </div>
+      <p class="video-caption">PTSD - materiał 1</p>
+    </div>
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe loading="lazy"
+          data-src="https://www.youtube.com/embed/k6qZPc4w3xk"
+          title="PTSD - materiał 2"
+          allow="
+            accelerometer;
+            autoplay;
+            clipboard-write;
+            encrypted-media;
+            gyroscope;
+            picture-in-picture;
+            web-share;
+          "
+          allowfullscreen
+        ></iframe>
+      </div>
+      <p class="video-caption">PTSD - materiał 2</p>
+    </div>
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe loading="lazy"
+          data-src="https://www.youtube.com/embed/wLiYi_Lk5pg"
+          title="PTSD - materiał 3"
+          allow="
+            accelerometer;
+            autoplay;
+            clipboard-write;
+            encrypted-media;
+            gyroscope;
+            picture-in-picture;
+            web-share;
+          "
+          allowfullscreen
+        ></iframe>
+      </div>
+      <p class="video-caption">PTSD - materiał 3</p>
+    </div>
+  </div>
+</section>
+
+      </section>
+      <section class="article-panel" id="adhdArticle">
+        <div class="article-header">
+          <p class="article-eyebrow">Temat w wiki</p>
+          <h2>ADHD - najważniejsze informacje</h2>
+          <p class="article-lead">
+            ADHD to trudności z koncentracją, impulsywność i nadpobudliwość,
+            które mogą utrudniać naukę, pracę i organizację dnia.
+          </p>
+        </div>
+
+        <div class="article-definition">
+          <h3>Krótka definicja</h3>
+          <p>
+            ADHD to zaburzenie neurorozwojowe z trudnościami w koncentracji,
+            impulsywnością i nadmierną aktywnością.
+          </p>
+        </div>
+
+        <div class="article-grid">
+          <div class="article-block">
+            <h3>Najczęstsze objawy</h3>
+            <ul>
+              <li>rozproszenie i trudność w skupieniu</li>
+              <li>impulsywne decyzje</li>
+              <li>problemy z organizacją zadań</li>
+              <li>zapominanie o terminach</li>
+              <li>napięcie i nadmiar energii</li>
+              <li>częste przerywanie i gadatliwość</li>
+            </ul>
+          </div>
+          <div class="article-block">
+            <h3>Co może pomagać</h3>
+            <ul>
+              <li>planowanie dnia w małych krokach</li>
+              <li>lista zadań i przypomnienia</li>
+              <li>praca w blokach czasowych</li>
+              <li>ruch i przerwy w ciągu dnia</li>
+              <li>konsultacja ze specjalistą</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="article-grid">
+          <div class="article-block">
+            <h3>Praktyczne wskazówki na co dzień</h3>
+            <ul>
+              <li>plan dnia twórz wieczorem na następny dzień</li>
+              <li>używaj timera do pracy w blokach</li>
+              <li>podziel zadania na mini-kroki</li>
+              <li>ustal stałą strefę do pracy</li>
+              <li>zapisuj wszystko od razu</li>
+            </ul>
+          </div>
+          <div class="article-block">
+            <h3>Wspieranie bliskiej osoby</h3>
+            <ul>
+              <li>ustal jasne zasady i terminy</li>
+              <li>pomóż w organizacji i planowaniu</li>
+              <li>nie oceniaj zapominania jako lenistwa</li>
+              <li>chwal za postęp, nie tylko efekt</li>
+              <li>zachęcaj do diagnostyki i wsparcia</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="article-note">
+          <h3>Kiedy szukać pomocy</h3>
+          <p>
+            Gdy trudności z koncentracją i organizacją utrudniają codzienne
+            funkcjonowanie, warto zgłosić się do specjalisty.
+          </p>
+        </div>
+
+        <div class="article-grid">
+          <div class="article-block">
+            <h3>ADHD w codziennym funkcjonowaniu</h3>
+            <ul>
+              <li>trudność utrzymania uwagi przy rutynowych zadaniach</li>
+              <li>problemy z planowaniem i domykaniem spraw</li>
+              <li>impulsywność w rozmowie, zakupach i decyzjach</li>
+              <li>przeciążenie bodźcami i szybkie zmęczenie poznawcze</li>
+              <li>nasilenie trudności przy braku snu i stresie</li>
+            </ul>
+          </div>
+          <div class="article-block">
+            <h3>Strategie, które działają</h3>
+            <ul>
+              <li>podział zadań na kroki 10-20 minut</li>
+              <li>zewnętrzne przypomnienia i listy kontrolne</li>
+              <li>stałe miejsce pracy z ograniczeniem rozpraszaczy</li>
+              <li>regularne przerwy ruchowe</li>
+              <li>w razie potrzeby konsultacja farmakologiczna</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="article-grid">
+          <div class="article-block">
+            <h3>Współistniejące trudności</h3>
+            <ul>
+              <li>zaburzenia lękowe i przeciążenie stresem</li>
+              <li>spadki nastroju, szybka frustracja, impulsywne reakcje</li>
+              <li>trudności ze snem i nieregularny rytm dobowy</li>
+              <li>odkładanie zadań i narastające zaległości</li>
+              <li>niskie poczucie sprawczości po wielu niepowodzeniach</li>
+            </ul>
+          </div>
+          <div class="article-block">
+            <h3>Co poprawia funkcjonowanie długoterminowo</h3>
+            <ul>
+              <li>psychoedukacja i lepsze rozumienie mechanizmów ADHD</li>
+              <li>stałe narzędzia organizacyjne: kalendarz, checklisty, alarmy</li>
+              <li>regularna aktywność fizyczna i higiena snu</li>
+              <li>dzielenie dużych celów na małe etapy</li>
+              <li>w razie potrzeby leczenie farmakologiczne pod kontrolą lekarza</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="article-note" data-extra="v2-adhd">
+          <h3>Dodatkowa wskazówka</h3>
+          <p>
+            ADHD nie jest lenistwem. Odpowiednie narzędzia i leczenie pozwalają
+            znacząco poprawić organizację i jakość życia.
+          </p>
+        </div>
+
+        <section class="video-section">
+          <h3>Materiały wideo (YouTube)</h3>
+          <div class="video-grid">
+            <div class="video-card">
+              <div class="video-embed">
+                <iframe loading="lazy"
+                  data-src="https://www.youtube.com/embed/RIL-Ua0SZLI"
+                  title="ADHD - materiał 1"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                    web-share;
+                  "
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <p class="video-caption">ADHD - materiał 1</p>
+            </div>
+            <div class="video-card">
+              <div class="video-embed">
+                <iframe loading="lazy"
+                  data-src="https://www.youtube.com/embed/POhNUAEDzkg"
+                  title="ADHD - materiał 2"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                    web-share;
+                  "
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <p class="video-caption">ADHD - materiał 2</p>
+            </div>
+            <div class="video-card">
+              <div class="video-embed">
+                <iframe loading="lazy"
+                  data-src="https://www.youtube.com/embed/1vaE8GRnSUg"
+                  title="ADHD - materiał 3"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                    web-share;
+                  "
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <p class="video-caption">ADHD - materiał 3</p>
+            </div>
+          </div>
+        </section>
+      </section>
+      <section class="article-panel" id="spektrumArticle">
+        <div class="article-header">
+          <p class="article-eyebrow">Temat w wiki</p>
+          <h2>Spektrum autyzmu - najważniejsze informacje</h2>
+          <p class="article-lead">
+            Spektrum autyzmu to różnorodne cechy w zakresie komunikacji, relacji
+            i wrażliwości na bodźce. Wsparcie pomaga dostosować otoczenie.
+          </p>
+        </div>
+        <div class="article-definition">
+          <h3>Krótka definicja</h3>
+          <p>
+            Spektrum autyzmu to zróżnicowane cechy w komunikacji, relacjach i
+            sposobie przetwarzania bodźców.
+          </p>
+        </div>
+        <div class="article-grid">
+          <div class="article-block">
+            <h3>Najczęstsze objawy</h3>
+            <ul>
+              <li>trudności w komunikacji społecznej</li>
+              <li>silna potrzeba rutyny</li>
+              <li>wrażliwość na dźwięki, światło, dotyk</li>
+              <li>specyficzne zainteresowania</li>
+              <li>trudność w zmianach i niespodziankach</li>
+              <li>trudność z odczytywaniem sygnałów społecznych</li>
+            </ul>
+          </div>
+          <div class="article-block">
+            <h3>Co może pomagać</h3>
+            <ul>
+              <li>jasne zasady i przewidywalna rutyna</li>
+              <li>ograniczanie nadmiaru bodźców</li>
+              <li>wizualne planery i instrukcje</li>
+              <li>nauka komunikacji i relacji</li>
+              <li>wsparcie terapeutyczne</li>
+            </ul>
+          </div>
+        </div>
+           
+      <div class="article-grid">
+          <div class="article-block">
+            <h3>Praktyczne wskazówki na co dzień</h3>
+            <ul>
+              <li>uprzedzaj o zmianach z wyprzedzeniem</li>
+              <li>stosuj planery i wizualne przypomnienia</li>
+              <li>dbaj o przerwy od bodźców</li>
+              <li>ustal spokojne, przewidywalne rytuały</li>
+              <li>wzmacniaj zainteresowania jako zasób</li>
+            </ul>
+          </div>
+          <div class="article-block">
+            <h3>Wspieranie bliskiej osoby</h3>
+            <ul>
+              <li>mów jasno i konkretnie</li>
+              <li>szanuj potrzebę wyciszenia</li>
+              <li>nie wymuszaj kontaktu społecznego</li>
+              <li>wspieraj w budowaniu bezpiecznej rutyny</li>
+              <li>szukaj specjalistycznych form wsparcia</li>
+            </ul>
+          </div>
+        </div>
+        <div class="article-note">
+          <h3>Kiedy szukać pomocy</h3>
+          <p>
+            Jeśli trudności w komunikacji i adaptacji utrudniają życie, warto
+            skonsultować się ze specjalistą.
+          </p>
+        </div>
+
+        <div class="article-grid">
+          <div class="article-block">
+            <h3>Codzienne potrzeby osoby w spektrum</h3>
+            <ul>
+              <li>przewidywalność i jasne zasady działania</li>
+              <li>kontrola bodźców (dźwięk, światło, dotyk)</li>
+              <li>czas na regenerację po przeciążeniu społecznym</li>
+              <li>komunikacja konkretna, bez niedomówień</li>
+              <li>szacunek dla indywidualnego stylu funkcjonowania</li>
+            </ul>
+          </div>
+          <div class="article-block">
+            <h3>Skuteczne formy wsparcia</h3>
+            <ul>
+              <li>dostosowanie szkoły/pracy do profilu sensorycznego</li>
+              <li>planery wizualne i przewidywalny harmonogram</li>
+              <li>trening umiejętności społecznych bez przymusu</li>
+              <li>psychoedukacja rodziny i otoczenia</li>
+              <li>budowanie mocnych stron zamiast samej korekty trudności</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="article-grid">
+          <div class="article-block">
+            <h3>Najczęstsze wyzwania w szkole i pracy</h3>
+            <ul>
+              <li>przeciążenie sensoryczne hałasem i nadmiarem bodźców</li>
+              <li>trudność z szybką zmianą planu i niejasnymi poleceniami</li>
+              <li>nieporozumienia komunikacyjne w relacjach zespołowych</li>
+              <li>zmęczenie po długim kontakcie społecznym</li>
+              <li>potrzeba przewidywalności i jasnych zasad działania</li>
+            </ul>
+          </div>
+          <div class="article-block">
+            <h3>Dostosowania, które realnie pomagają</h3>
+            <ul>
+              <li>ciche miejsce pracy lub nauki i kontrola bodźców</li>
+              <li>jasne instrukcje pisemne krok po kroku</li>
+              <li>wczesne informowanie o zmianach i deadline’ach</li>
+              <li>możliwość krótkich przerw regeneracyjnych</li>
+              <li>szacunek dla indywidualnego stylu komunikacji</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="article-note" data-extra="v2-spektrum">
+          <h3>Dodatkowa wskazówka</h3>
+          <p>
+            Najlepsze efekty daje wsparcie dopasowane do konkretnej osoby, a nie
+            sztywny, jednakowy model dla wszystkich.
+          </p>
+        </div>
+
+        <section class="video-section">
+          <h3>Materiały wideo (YouTube)</h3>
+          <div class="video-grid">
+            <div class="video-card">
+              <div class="video-embed">
+                <iframe loading="lazy"
+                  data-src="https://www.youtube.com/embed/fGeVmB37Ci4"
+          title="Spektrum autyzmu - materiał 1"
+          allow="
+            accelerometer;
+            autoplay;
+            clipboard-write;
+            encrypted-media;
+            gyroscope;
+            picture-in-picture;
+            web-share;
+          "
+          allowfullscreen
+        ></iframe>
+      </div>
+      <p class="video-caption">Spektrum autyzmu - materiał 1</p>
+    </div>
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe loading="lazy"
+          data-src="https://www.youtube.com/embed/jjtdg9FFA5Q"
+          title="Spektrum autyzmu - materiał 2"
+          allow="
+            accelerometer;
+            autoplay;
+            clipboard-write;
+            encrypted-media;
+            gyroscope;
+            picture-in-picture;
+            web-share;
+          "
+          allowfullscreen
+        ></iframe>
+      </div>
+      <p class="video-caption">Spektrum autyzmu - materiał 2</p>
+    </div>
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe loading="lazy"
+          data-src="https://www.youtube.com/embed/IEHwL5LPxxs"
+          title="Spektrum autyzmu - materiał 3"
+          allow="
+            accelerometer;
+            autoplay;
+            clipboard-write;
+            encrypted-media;
+            gyroscope;
+            picture-in-picture;
+            web-share;
+          "
+          allowfullscreen
+        ></iframe>
+      </div>
+      <p class="video-caption">Spektrum autyzmu - materiał 3</p>
+    </div>
+  </div>
+</section>
+
+      </section>
+      <section class="article-panel" id="bezsennoscArticle">
+  <div class="article-header">
+    <p class="article-eyebrow">Temat w wiki</p>
+    <h2>Bezsenność - najważniejsze informacje</h2>
+    <p class="article-lead">
+      Bezsenność to trudności z zasypianiem, wybudzaniem lub brakiem
+      regenerującego snu. Wpływa na nastrój i koncentrację.
+    </p>
+  </div>
+  <div class="article-definition">
+    <h3>Krótka definicja</h3>
+    <p>
+      Bezsenność to utrzymujące się trudności z zasypianiem, snem lub
+      jakością snu, które wpływają na funkcjonowanie w ciągu dnia.
+    </p>
+  </div>
+  <div class="article-grid">
+    <div class="article-block">
+      <h3>Najczęstsze objawy</h3>
+      <ul>
+        <li>trudność z zasypianiem</li>
+        <li>częste wybudzenia</li>
+        <li>poczucie zmęczenia w ciągu dnia</li>
+        <li>drażliwość i spadek koncentracji</li>
+        <li>lęk przed kolejnym snem</li>
+        <li>problemy z wstawaniem i spadek energii</li>
+      </ul>
+    </div>
+    <div class="article-block">
+      <h3>Co może pomagać</h3>
+      <ul>
+        <li>stałe godziny snu i pobudki</li>
+        <li>ograniczenie ekranów wieczorem</li>
+        <li>lekka aktywność w ciągu dnia</li>
+        <li>cisza i ciemność w sypialni</li>
+        <li>techniki relaksacyjne</li>
+      </ul>
+    </div>
+  </div>
+  <div class="article-grid">
+    <div class="article-block">
+      <h3>Praktyczne wskazówki na co dzień</h3>
+      <ul>
+        <li>wstawaj o tej samej porze, nawet w weekend</li>
+        <li>unikaj drzemek po 15:00</li>
+        <li>twórz wieczorny rytuał uspokojenia</li>
+        <li>odkładaj telefon na 60 minut przed snem</li>
+        <li>prowadź dziennik snu</li>
+      </ul>
+    </div>
+       
+    <div class="article-block">
+  <h3>Wspieranie bliskiej osoby</h3>
+  <ul>
+    <li>dbaj o spokój w domu wieczorem</li>
+    <li>nie oceniaj i nie wywieraj presji</li>
+    <li>zachęcaj do ruchu w ciągu dnia</li>
+    <li>pomóż w ustaleniu rutyny snu</li>
+    <li>zachęcaj do konsultacji lekarskiej</li>
+  </ul>
+</div>
+</div>
+<div class="article-note">
+  <h3>Kiedy szukać pomocy</h3>
+  <p>
+    Jeśli bezsenność trwa długo i utrudnia codzienne funkcjonowanie,
+    warto skonsultować się z lekarzem.
+  </p>
+</div>
+
+<div class="article-grid">
+  <div class="article-block">
+    <h3>Co najczęściej utrwala bezsenność</h3>
+    <ul>
+      <li>nieregularne godziny snu i częste drzemki</li>
+      <li>korzystanie z ekranu tuż przed snem</li>
+      <li>lęk przed kolejną nieprzespaną nocą</li>
+      <li>kofeina i pobudzacze w drugiej części dnia</li>
+      <li>praca i stres bez wieczornego wyciszenia</li>
+    </ul>
+  </div>
+  <div class="article-block">
+    <h3>Skuteczna higiena snu</h3>
+    <ul>
+      <li>stała pora pobudki przez 7 dni w tygodniu</li>
+      <li>wyciszający rytuał 60 minut przed snem</li>
+      <li>sypialnia: ciemno, chłodno, cicho</li>
+      <li>łóżko tylko do snu i odpoczynku</li>
+      <li>przy przewlekłych objawach konsultacja lekarska</li>
+    </ul>
+  </div>
+</div>
+
+<div class="article-grid">
+  <div class="article-block">
+    <h3>Możliwe przyczyny bezsenności</h3>
+    <ul>
+      <li>przewlekły stres i przeciążenie psychiczne</li>
+      <li>zaburzenia lękowe i depresyjne</li>
+      <li>nieregularna praca zmianowa i rozregulowanie rytmu dobowego</li>
+      <li>nadmierna kofeina, nikotyna i alkohol wieczorem</li>
+      <li>choroby somatyczne i ból utrudniające sen</li>
+    </ul>
+  </div>
+  <div class="article-block">
+    <h3>Co poprawia sen długoterminowo</h3>
+    <ul>
+      <li>stała godzina pobudki niezależnie od dnia tygodnia</li>
+      <li>ograniczenie łóżka tylko do snu i odpoczynku</li>
+      <li>wieczorny rytuał wyciszenia bez ekranów</li>
+      <li>aktywność fizyczna w ciągu dnia, nie tuż przed snem</li>
+      <li>w razie przewlekłych objawów terapia CBT-I i konsultacja lekarska</li>
+    </ul>
+  </div>
+</div>
+      <div class="article-note" data-extra="v2-bezsennosc">
+  <h3>Dodatkowa wskazówka</h3>
+  <p>
+    Nawet drobna poprawa regularności snu przez 2-3 tygodnie potrafi
+    wyraźnie zmniejszyć napięcie i poprawić koncentrację w dzień.
+  </p>
+</div>
+
+<section class="video-section">
+  <h3>Materiały wideo (YouTube)</h3>
+  <div class="video-grid">
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe loading="lazy"
+          data-src="https://www.youtube.com/embed/xwaphC0oAAE"
+          title="Bezsenność - materiał 1"
+          allow="
+            accelerometer;
+            autoplay;
+            clipboard-write;
+            encrypted-media;
+            gyroscope;
+            picture-in-picture;
+            web-share;
+          "
+          allowfullscreen
+        ></iframe>
+      </div>
+      <p class="video-caption">Bezsenność - materiał 1</p>
+    </div>
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe loading="lazy"
+          data-src="https://www.youtube.com/embed/CND_pzlj2FQ"
+          title="Bezsenność - materiał 2"
+          allow="
+            accelerometer;
+            autoplay;
+            clipboard-write;
+            encrypted-media;
+            gyroscope;
+            picture-in-picture;
+            web-share;
+          "
+          allowfullscreen
+        ></iframe>
+      </div>
+      <p class="video-caption">Bezsenność - materiał 2</p>
+    </div>
+    <div class="video-card">
+      <div class="video-embed">
+        <iframe loading="lazy"
+          data-src="https://www.youtube.com/embed/Ojv2KXjyoyY"
+          title="Bezsenność - materiał 3"
+          allow="
+            accelerometer;
+            autoplay;
+            clipboard-write;
+            encrypted-media;
+            gyroscope;
+            picture-in-picture;
+            web-share;
+          "
+          allowfullscreen
+        ></iframe>
+      </div>
+      <p class="video-caption">Bezsenność - materiał 3</p>
+    </div>
+  </div>
+</section>
+</section>
+</main>
+
+   <footer>
+  <div class="footer-content">
+    <div class="footer-left">
+      <div class="footer-icons">
+        <a
+          class="social-link insta-link"
+          href="https://www.instagram.com/razem_wglowie?igsh=ZzI2NHZwNTN1bHJ4&utm_source=qra"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram"
+        >
+          <img class="social-icon insta" src="instagram.png" alt="Instagram" />
+        </a>
+        <a
+          class="social-link"
+          href="https://www.tiktok.com/@razem_w_glowie"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="TikTok"
+        >
+          <i class="social-glyph fa-brands fa-tiktok" aria-hidden="true"></i>
+        </a>
+        <a class="social-link" href="mailto:razemwglowie@gmail.com" aria-label="Mail">
+          <i class="social-glyph fa-regular fa-envelope" aria-hidden="true"></i>
+        </a>
+      </div>
+      <a class="footer-email" href="mailto:razemwglowie@gmail.com">razemwglowie@gmail.com</a>
+    </div>
+    <div class="footer-center">
+      <p class="footer-note">Masz pomysł na hasło? Daj znać na forum.</p>
+      <p class="footer-copy">&copy; 2026 Razem w Głowie.</p>
+    </div>
+  </div>
+</footer>
+
+    <script>
+      (() => {
+        try {
+          const buttons = Array.from(document.querySelectorAll(".topic-button[data-topic]"));
+          const panels = Array.from(
+            document.querySelectorAll("section.article-panel[id]"),
+          );
+          const panelsById = new Map(panels.map((panel) => [panel.id, panel]));
+          let activePanel = null;
+
+          const getTargetId = (button) => {
+            const raw = String(button?.getAttribute?.("aria-controls") || "").trim();
+            return raw && panelsById.has(raw) ? raw : null;
+          };
+
+          const showPanel = (panel) => {
+            panel.hidden = false;
+            panel.classList.remove("is-exiting");
+            panel.classList.add("is-entering");
+            requestAnimationFrame(() => {
+              panel.classList.remove("is-entering");
+              panel.classList.add("is-active");
+            });
+          };
+
+          const hidePanel = (panel) => {
+            panel.classList.remove("is-entering");
+            panel.classList.remove("is-active");
+            panel.classList.add("is-exiting");
+            window.setTimeout(() => {
+              panel.hidden = true;
+              panel.classList.remove("is-exiting");
+            }, 260);
+          };
+
+          const setActive = (id) => {
+            const target = panelsById.get(id);
+            if (!target) return false;
+
+            panels.forEach((panel) => {
+              if (panel === target) return;
+              panel.hidden = true;
+              panel.classList.remove("is-active", "is-entering", "is-exiting");
+            });
+
+            buttons.forEach((button) => {
+              const targetId = getTargetId(button);
+              const active = targetId === id;
+              button.classList.toggle("is-active", active);
+              button.setAttribute("aria-expanded", active ? "true" : "false");
+            });
+
+            if (activePanel && activePanel !== target) hidePanel(activePanel);
+            showPanel(target);
+            activePanel = target;
+
+            return true;
+          };
+
+          const activateFromHash = () => {
+            const raw = (window.location.hash || "").replace(/^#/, "");
+            if (!raw) return false;
+            const id = decodeURIComponent(raw);
+            return setActive(id);
+          };
+
+          buttons.forEach((button) => {
+            button.addEventListener("click", () => {
+              const id = getTargetId(button);
+              if (!id) return;
+              if (setActive(id)) document.documentElement.classList.add("js-ready");
+            });
+          });
+
+          // Start with nothing selected (user must click), unless URL has a hash.
+          let ok = activateFromHash();
+
+          if (!ok) {
+            panels.forEach((panel) => {
+              panel.hidden = true;
+              panel.classList.remove("is-active", "is-entering", "is-exiting");
+            });
+            buttons.forEach((button) => {
+              button.classList.remove("is-active");
+              button.setAttribute("aria-expanded", "false");
+            });
+            ok = true;
+          }
+
+          window.addEventListener("hashchange", activateFromHash);
+
+          if (ok) document.documentElement.classList.add("js-ready");
+        } catch (error) {
+          console.warn("Wiki topics init failed:", error);
+        }
+      })();
+    </script>
+    <script>
+      window.addEventListener("load", () => {
+        document.querySelectorAll("iframe[data-src]").forEach((frame) => {
+          const src = frame.getAttribute("data-src");
+          if (src) frame.setAttribute("src", src);
+        });
+      });
+    </script>
+    <script type="module" src="auth-session.js"></script>
+    <script type="module" src="profile-ui.js"></script>
+    <script type="module" src="profile-storage.js"></script>
+  </body>
+</html>

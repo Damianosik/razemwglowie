@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <link rel="icon" type="image/png" href="logo.png" />
+    <link rel="apple-touch-icon" href="logo.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Razem w Głowie - Odzyskiwanie hasła</title>
+    <link rel="stylesheet" href="login.css" />
+  </head>
+  <body class="light-mode">
+    <div class="login-container">
+      <div class="logo-container">
+        <img src="logo.png" alt="Razem w Głowie Logo" />
+      </div>
+
+      <h1>Odzyskiwanie hasła</h1>
+      <p class="subtitle" id="instructionText">
+        Podaj e-mail użyty przy tworzeniu konta. Wyślemy link, którym zmienisz
+        hasło.
+      </p>
+
+      <div class="error-message" id="errorMessage"></div>
+      <div class="success-message" id="successMessage"></div>
+
+      <form id="emailForm">
+        <div class="input-group">
+          <label for="email">E-mail</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            placeholder="Wpisz swój e-mail"
+            autocomplete="email"
+          />
+        </div>
+        <button type="submit" class="login-btn" id="resetBtn">
+          Wyślij link do resetowania
+        </button>
+      </form>
+
+      <div class="forgot-password">
+        <a href="login.html">Powrót do logowania</a>
+      </div>
+    </div>
+
+    <script type="module" src="forgot.js"></script>
+  </body>
+</html>

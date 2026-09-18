@@ -1,0 +1,179 @@
+﻿<!doctype html>
+<html lang="pl">
+  <head>
+    <link rel="icon" type="image/png" href="logo.png" />
+    <link rel="apple-touch-icon" href="logo.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Razem w Głowie - Panel administratora</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="admin.css" />
+    <link rel="stylesheet" href="profile-ui.css" />
+    <script type="module" src="auth-guard.js"></script>
+  </head>
+  <body class="light-mode">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="logo-wrapper-small">
+          <img src="logo.png" alt="Logo" class="nav-logo-img" />
+          <span class="logo-text">Razem w Głowie</span>
+        </div>
+        <nav class="topbar-nav">
+          <ul>
+            <li><a href="index.html">Strona główna</a></li>
+            <li><a href="forum.html">Forum</a></li>
+            <li><a href="wiki.html">Baza wiedzy</a></li>
+            <li>
+              <a
+                href="ankieta.html"
+                >Ankieta</a
+              >
+            </li>
+            <li><a href="index.html#specjalisci">Specjaliści</a></li>
+            <li><a href="about.html">O nas</a></li>
+            <li><a href="admin.html" id="adminNavLink" class="active">Panel admina</a></li>
+          </ul>
+        </nav>
+        <div class="topbar-right"></div>
+      </div>
+    </header>
+
+    <main class="page">
+      <section class="announcement-admin">
+        <h2>Ogłoszenia (dla wszystkich)</h2>
+        <p class="subtitle">
+          Np. "Przerwa techniczna od 12:00". Ogłoszenie pokaże się na górze strony.
+        </p>
+        <form id="announcementForm" class="announcement-form">
+          <label for="announcementMessage">Treść</label>
+          <textarea
+            id="announcementMessage"
+            rows="3"
+            maxlength="220"
+            placeholder="Wpisz ogłoszenie..."
+            required
+          ></textarea>
+          <div class="announcement-grid">
+            <div>
+              <label for="announcementStart">Start (opcjonalnie)</label>
+              <input id="announcementStart" type="datetime-local" />
+            </div>
+            <div>
+              <label for="announcementEnd">Koniec (opcjonalnie)</label>
+              <input id="announcementEnd" type="datetime-local" />
+            </div>
+          </div>
+          <div class="announcement-actions">
+            <button type="submit" id="publishAnnouncementBtn">Opublikuj</button>
+            <button type="button" class="danger" id="deleteAnnouncementBtn">
+              Usuń aktualne
+            </button>
+          </div>
+          <p class="table-note" id="announcementStatus"></p>
+        </form>
+        <div class="announcement-preview">
+          <strong>Aktualne:</strong>
+          <span id="currentAnnouncement">Brak</span>
+        </div>
+      </section>
+
+      <section class="announcement-admin" id="surveyAdmin">
+        <h2>Ankieta – reset wyników</h2>
+        <p class="subtitle">
+          Zeruje statystyki (procenty) i usuwa zgłoszenia, żeby można było wypełnić ankietę od nowa.
+        </p>
+        <form id="surveyResetForm" class="announcement-form" autocomplete="off">
+          <label for="surveyResetConfirm">Aby potwierdzić, wpisz RESET</label>
+          <input
+            id="surveyResetConfirm"
+            type="text"
+            placeholder="RESET"
+            inputmode="text"
+            autocomplete="off"
+          />
+          <div class="announcement-actions">
+            <button type="submit" class="danger" id="surveyResetBtn">
+              Resetuj wyniki ankiety
+            </button>
+          </div>
+          <p class="table-note" id="surveyResetStatus"></p>
+        </form>
+      </section>
+
+      <section class="summary">
+        <h1>Zarządzanie użytkownikami</h1>
+        <p class="subtitle">
+          Lista kont, status online/offline oraz akcje moderatorskie.
+        </p>
+        <div class="stats">
+          <article class="stat-card">
+            <span>Wszyscy</span>
+            <strong id="countAll">0</strong>
+          </article>
+          <article class="stat-card">
+            <span>Online</span>
+            <strong id="countOnline">0</strong>
+          </article>
+          <article class="stat-card">
+            <span>Offline</span>
+            <strong id="countOffline">0</strong>
+          </article>
+          <article class="stat-card">
+            <span>Zablokowani</span>
+            <strong id="countBlocked">0</strong>
+          </article>
+          <article class="stat-card">
+            <span>Zbanowani</span>
+            <strong id="countBanned">0</strong>
+          </article>
+        </div>
+      </section>
+
+      <section class="controls">
+        <label for="statusFilter">Filtr statusu</label>
+        <select id="statusFilter">
+          <option value="all">Wszyscy</option>
+          <option value="online">Online</option>
+          <option value="offline">Offline</option>
+          <option value="blocked">Zablokowani</option>
+          <option value="banned">Zbanowani</option>
+        </select>
+        <label for="searchUsers">Szukaj</label>
+        <input
+          type="search"
+          id="searchUsers"
+          placeholder="Login lub e-mail"
+          autocomplete="off"
+        />
+        <button id="refreshBtn" type="button">Odswiez</button>
+      </section>
+
+      <section class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Uzytkownik</th>
+              <th>Rola</th>
+              <th>Status</th>
+              <th>Ban / blokada</th>
+              <th>Ostatnia aktywnosc</th>
+              <th>Akcje</th>
+            </tr>
+          </thead>
+          <tbody id="usersTableBody"></tbody>
+        </table>
+        <p class="table-note" id="tableNote"></p>
+      </section>
+    </main>
+
+    <script type="module" src="auth-session.js"></script>
+    <script type="module" src="profile-ui.js"></script>
+    <script type="module" src="profile-storage.js"></script>
+    <script src="user-management.js"></script>
+    <script type="module" src="admin.js"></script>
+  </body>
+</html>
+

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <link rel="icon" type="image/png" href="logo.png" />
+    <link rel="apple-touch-icon" href="logo.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Razem w Głowie - Rejestracja</title>
+    <link rel="stylesheet" href="login.css" />
+  </head>
+  <body class="light-mode">
+    <div class="login-container">
+      <div class="logo-container">
+        <img src="logo.png" alt="Razem w Głowie Logo" />
+      </div>
+
+      <h1>Razem w Głowie</h1>
+      <p class="subtitle">Utwórz nowe konto</p>
+
+      <div class="error-message" id="errorMessage"></div>
+      <div class="success-message" id="successMessage"></div>
+
+      <form id="registerForm">
+        <div class="input-group">
+          <label for="username">Login</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            required
+            placeholder="Wpisz swój login"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="input-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            placeholder="Wpisz swój email"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="input-group">
+          <label for="password">Hasło</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            placeholder="Utwórz hasło"
+          />
+        </div>
+
+        <div class="input-group">
+          <label for="confirmPassword">Powtórz hasło</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            required
+            placeholder="Powtórz hasło"
+          />
+        </div>
+
+        <button type="submit" class="login-btn">Zarejestruj się</button>
+      </form>
+
+      <div class="forgot-password">
+        <a href="login.html">Masz konto? Zaloguj się</a>
+      </div>
+    </div>
+
+    <script type="module" src="register.js"></script>
+  </body>
+</html>

@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <link rel="icon" type="image/png" href="logo.png" />
+    <link rel="apple-touch-icon" href="logo.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Razem w Głowie - Forum</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="forum.css" />
+    <link rel="stylesheet" href="profile-ui.css" />
+    <link rel="stylesheet" href="footer.css" />
+  </head>
+  <body class="light-mode">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="logo-wrapper-small">
+          <img src="logo.png" alt="Logo" class="nav-logo-img" />
+          <span class="logo-text">Razem w Głowie</span>
+        </div>
+        <nav class="topbar-nav">
+          <ul>
+            <li><a href="index.html">Strona główna</a></li>
+            <li><a href="forum.html" class="active">Forum</a></li>
+            <li><a href="wiki.html">Baza wiedzy</a></li>
+            <li>
+              <a
+                href="ankieta.html"
+                >Ankieta</a
+              >
+            </li>
+            <li>
+          <a href="index.html#specjalisci">Specjaliści</a>
+            </li>
+            <li><a href="about.html">O nas</a></li>
+            <li><a href="admin.html" id="adminNavLink" style="display: none">Panel admina</a></li>
+          </ul>
+        </nav>
+        <div class="topbar-right"></div>
+      </div>
+    </header>
+
+    <main class="page">
+      <section class="hero">
+        <div class="hero-card">
+          <p class="eyebrow">Nowy post w kilka sekund</p>
+          <h1>Twoje miejsce na pytania, wsparcie i dobre porady.</h1>
+          <div class="hero-meta">
+            <div class="user-pill">
+              Zalogowany jako:
+              <span id="currentUser" class="user-name">Ładowanie...</span>
+            </div>
+            <a class="login-link" href="login.html" id="loginCta"
+              >Zaloguj się, aby dodać post</a
+            >
+          </div>
+        </div>
+        <div class="hero-art">
+          <div class="orb orb-1"></div>
+          <div class="orb orb-2"></div>
+        </div>
+      </section>
+
+      <section class="compose">
+        <div class="compose-header">
+          <h2>Dodaj nowy wątek</h2>
+        </div>
+        <form id="postForm" class="compose-form">
+          <div class="field">
+            <label>Tytuł</label>
+            <input
+              type="text"
+              id="postTitle"
+              placeholder="O czym chcesz pogadać?"
+              required
+            />
+          </div>
+          <div class="field">
+            <label>Kategoria</label>
+            <select id="postCategory" required>
+              <option value="Wsparcie">Wsparcie</option>
+              <option value="Pytanie">Pytanie</option>
+              <option value="Wiedza">Wiedza</option>
+              <option value="Inne">Inne</option>
+            </select>
+          </div>
+          <div class="field field-wide">
+            <label>Treść</label>
+            <textarea
+              id="postContent"
+              rows="6"
+              placeholder="Napisz coś więcej..."
+              required
+            ></textarea>
+          </div>
+          <div class="field field-wide">
+            <label>Tagi</label>
+            <input type="text" id="postTags" placeholder="stres, motywacja" />
+          </div>
+          <button class="btn-primary" type="submit">Opublikuj post</button>
+        </form>
+      </section>
+
+      <section class="feed">
+        <h2>Ostatnie wątki</h2>
+        <div id="postsList" class="posts-list"></div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-left">
+          <div class="footer-icons">
+            <a
+              class="social-link insta-link"
+              href="https://www.instagram.com/razem_wglowie?igsh=ZzI2NHZwNTN1bHJ4&utm_source=qra"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
+              <img class="social-icon insta" src="instagram.png" alt="Instagram" />
+            </a>
+            <a
+              class="social-link"
+              href="https://www.tiktok.com/@razem_w_glowie"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="TikTok"
+            >
+              <i class="social-glyph fa-brands fa-tiktok" aria-hidden="true"></i>
+            </a>
+            <a class="social-link" href="mailto:razemwglowie@gmail.com" aria-label="Mail">
+              <i class="social-glyph fa-regular fa-envelope" aria-hidden="true"></i>
+            </a>
+          </div>
+          <a class="footer-email" href="mailto:razemwglowie@gmail.com">razemwglowie@gmail.com</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 Razem w Głowie.</p>
+      </div>
+    </footer>
+
+    <script type="module" src="auth-session.js"></script>
+    <script type="module" src="profile-ui.js"></script>
+    <script type="module" src="profile-storage.js"></script>
+    <script type="module" src="forum.js"></script>
+  </body>
+</html>

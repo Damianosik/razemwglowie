@@ -1,0 +1,381 @@
+:root {
+  --bg: #0d1117;
+  --card: #161b22;
+  --muted: #97a2b1;
+  --text: #e6edf3;
+  --accent: #7bb9bc;
+  --danger: #ef4444;
+  --ok: #22c55e;
+  --warn: #f59e0b;
+  --border: rgba(255, 255, 255, 0.1);
+  --font: "Exo 2", sans-serif;
+}
+
+body.light-mode {
+  --bg: #f4f6f9;
+  --card: rgba(255, 255, 255, 0.94);
+  --muted: #5a6676;
+  --text: #101219;
+  --border: rgba(16, 18, 25, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #14213d 0%, var(--bg) 42%);
+  color: var(--text);
+  font-family: var(--font);
+}
+
+body.light-mode {
+  background: radial-gradient(circle at 30% 20%, rgba(123, 185, 188, 0.22), transparent 55%),
+    radial-gradient(circle at 70% 80%, rgba(16, 18, 25, 0.04), transparent 60%),
+    var(--bg);
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(13, 17, 23, 0.9);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(8px);
+}
+
+body.light-mode .topbar {
+  background: rgba(244, 246, 249, 0.9);
+}
+
+.topbar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.brand {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.topbar-nav {
+  display: flex;
+  gap: 14px;
+}
+
+.topbar-nav a {
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.topbar-nav a.active,
+.topbar-nav a:hover {
+  color: var(--text);
+}
+
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 20px 36px;
+}
+
+.announcement-admin {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.announcement-admin h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.announcement-form {
+  display: grid;
+  gap: 10px;
+}
+
+.announcement-form label {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.announcement-form textarea,
+.announcement-form input {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #0b1015;
+  color: var(--text);
+  padding: 9px 10px;
+  font: inherit;
+}
+
+body.light-mode .announcement-form textarea,
+body.light-mode .announcement-form input {
+  background: #ffffff;
+}
+
+.announcement-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.announcement-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.announcement-actions button {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #0f172a;
+  color: var(--text);
+  padding: 9px 12px;
+  font: inherit;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+body.light-mode .announcement-actions button {
+  background: rgba(16, 18, 25, 0.04);
+}
+
+.announcement-actions button.danger {
+  color: #fecaca;
+  border-color: rgba(239, 68, 68, 0.45);
+  background: rgba(239, 68, 68, 0.08);
+}
+
+body.light-mode .announcement-actions button.danger {
+  color: #b91c1c;
+  border-color: rgba(185, 28, 28, 0.35);
+  background: rgba(185, 28, 28, 0.08);
+}
+
+.announcement-actions button:hover {
+  border-color: rgba(123, 185, 188, 0.7);
+}
+
+.announcement-preview {
+  margin-top: 10px;
+  color: var(--muted);
+}
+
+.announcement-preview strong {
+  color: var(--text);
+}
+
+.summary h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.subtitle {
+  margin: 10px 0 24px;
+  color: var(--muted);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px;
+  display: grid;
+  gap: 6px;
+}
+
+.stat-card span {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.stat-card strong {
+  font-size: 1.35rem;
+}
+
+.controls {
+  margin-top: 20px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: 130px 1fr 80px 1fr auto;
+  align-items: center;
+}
+
+.controls label {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.controls select,
+.controls input,
+.controls button {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #0b1015;
+  color: var(--text);
+  padding: 9px 10px;
+  font: inherit;
+}
+
+body.light-mode .controls select,
+body.light-mode .controls input,
+body.light-mode .controls button {
+  background: #ffffff;
+}
+
+.controls button {
+  cursor: pointer;
+  background: #0f172a;
+}
+
+body.light-mode .controls button {
+  background: rgba(16, 18, 25, 0.04);
+}
+
+.table-wrap {
+  margin-top: 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+th,
+td {
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+td strong {
+  display: block;
+}
+
+.mail {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 3px 9px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.online {
+  color: #0a2a12;
+  background: #86efac;
+}
+
+.offline {
+  color: #1f2937;
+  background: #cbd5e1;
+}
+
+.blocked-text {
+  color: var(--warn);
+}
+
+.banned-text {
+  color: #fca5a5;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(120px, 1fr));
+  gap: 8px;
+}
+
+@media (min-width: 1200px) {
+  .actions {
+    grid-template-columns: repeat(3, minmax(120px, 1fr));
+  }
+}
+
+.actions button {
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 7px 8px;
+  background: #0b1015;
+  color: var(--text);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.82rem;
+}
+
+body.light-mode .actions button {
+  background: #ffffff;
+  color: var(--text);
+}
+
+.actions button:hover {
+  border-color: rgba(123, 185, 188, 0.7);
+}
+
+.actions button.danger {
+  color: #fecaca;
+  border-color: rgba(239, 68, 68, 0.45);
+}
+
+body.light-mode .actions button.danger {
+  color: #b91c1c;
+  background: rgba(185, 28, 28, 0.06);
+  border-color: rgba(185, 28, 28, 0.25);
+}
+
+.actions button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.table-note {
+  margin: 0;
+  padding: 12px;
+  color: var(--muted);
+}
+
+@media (max-width: 980px) {
+  .controls {
+    grid-template-columns: 1fr;
+  }
+
+  .announcement-grid {
+    grid-template-columns: 1fr;
+  }
+}

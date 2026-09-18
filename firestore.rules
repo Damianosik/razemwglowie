@@ -1,0 +1,481 @@
+﻿rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return signedIn() && (
+        request.auth.token.admin == true ||
+        (request.auth.token.email_verified == true && request.auth.token.email in [
+          "razemwglowie@gmail.com"
+        ])
+      );
+    }
+
+    function isOwner(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    function banIsActive(ban) {
+      return ban != null
+        && (
+          (ban.permanent == true)
+          || (("until" in ban) && ban.until is timestamp && ban.until > request.time)
+        );
+    }
+
+    function isActiveUser(uid) {
+      let path = /databases/$(database)/documents/users/$(uid);
+      return exists(path)
+        && get(path).data.isBlocked == false
+        && !banIsActive(get(path).data.ban);
+    }
+
+    function activeSignedIn() {
+      return signedIn() && isActiveUser(request.auth.uid);
+    }
+
+    function hasOnlyUserFields(data) {
+      return data.keys().hasOnly([
+        "uid",
+        "username",
+        "usernameLower",
+        "email",
+        "emailLower",
+        "photoURL",
+        "role",
+        "isBlocked",
+        "ban",
+        "createdAt",
+        "updatedAt",
+        "lastLoginAt"
+      ]);
+    }
+
+    function validUserCreate(uid) {
+      return hasOnlyUserFields(request.resource.data)
+        && request.resource.data.uid == uid
+        && request.resource.data.role == "user"
+        && request.resource.data.isBlocked == false
+        && request.resource.data.ban == null
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.updatedAt == request.time
+        && (!("lastLoginAt" in request.resource.data)
+          || request.resource.data.lastLoginAt == null
+          || request.resource.data.lastLoginAt == request.time);
+    }
+
+    function validUserUpdateByOwner(uid) {
+      return hasOnlyUserFields(request.resource.data)
+        && request.resource.data.uid == uid
+        && request.resource.data.uid == resource.data.uid
+        && request.resource.data.role == resource.data.role
+        && request.resource.data.isBlocked == resource.data.isBlocked
+        && request.resource.data.ban == resource.data.ban
+        && request.resource.data.email == resource.data.email
+        && request.resource.data.emailLower == resource.data.emailLower
+        && request.resource.data.createdAt == resource.data.createdAt
+        && request.resource.data.updatedAt == request.time
+        && (!("lastLoginAt" in request.resource.data)
+          || request.resource.data.lastLoginAt == resource.data.lastLoginAt
+          || request.resource.data.lastLoginAt == request.time);
+    }
+
+    function validNotificationCreate(recipientUid) {
+      return request.resource.data.keys().hasOnly([
+          "type",
+          "recipientUid",
+          "postId",
+          "postTitle",
+          "fromUid",
+          "fromName",
+          "text",
+          "createdAt",
+          "readAt"
+        ])
+        && request.resource.data.type == "comment"
+        && request.resource.data.recipientUid == recipientUid
+        && request.resource.data.postId is string
+        && request.resource.data.postId.size() >= 1
+        && request.resource.data.postId.size() <= 80
+        && request.resource.data.postTitle is string
+        && request.resource.data.postTitle.size() <= 120
+        && request.resource.data.fromUid == request.auth.uid
+        && request.resource.data.fromName is string
+        && request.resource.data.fromName.size() >= 1
+        && request.resource.data.fromName.size() <= 80
+        && request.resource.data.text is string
+        && request.resource.data.text.size() >= 1
+        && request.resource.data.text.size() <= 160
+        && request.resource.data.readAt == null
+        && request.resource.data.createdAt == request.time;
+    }
+
+    function validNotificationReadUpdate(recipientUid) {
+      return request.resource.data.diff(resource.data).changedKeys().hasOnly(["readAt"])
+        && request.resource.data.recipientUid == recipientUid
+        && request.resource.data.type == resource.data.type
+        && request.resource.data.postId == resource.data.postId
+        && request.resource.data.postTitle == resource.data.postTitle
+        && request.resource.data.fromUid == resource.data.fromUid
+        && request.resource.data.fromName == resource.data.fromName
+        && request.resource.data.text == resource.data.text
+        && request.resource.data.createdAt == resource.data.createdAt
+        && request.resource.data.readAt == request.time;
+    }
+
+    match /users/{uid} {
+      allow get: if isOwner(uid) || isAdmin();
+
+      allow list: if isAdmin();
+
+      allow create: if isOwner(uid) && validUserCreate(uid);
+
+      allow update: if isAdmin() || (isOwner(uid) && validUserUpdateByOwner(uid));
+
+      allow delete: if isAdmin() || isOwner(uid);
+
+      match /notifications/{notifId} {
+        allow read: if isOwner(uid) || isAdmin();
+        allow create: if activeSignedIn()
+          && uid != request.auth.uid
+          && validNotificationCreate(uid);
+        allow update: if isOwner(uid) && validNotificationReadUpdate(uid);
+        allow delete: if isOwner(uid) || isAdmin();
+      }
+    }
+
+    match /usernames/{usernameLower} {
+      allow get: if false;
+      allow list: if false;
+
+      function validUsernameDoc() {
+        return request.resource.data.keys().hasOnly([
+          "uid",
+          "username",
+          "usernameLower",
+          "createdAt",
+          "updatedAt"
+        ])
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.username is string
+        && request.resource.data.username.size() >= 3
+        && request.resource.data.username.size() <= 40
+        && request.resource.data.usernameLower == usernameLower
+        && request.resource.data.createdAt == request.time;
+      }
+
+      allow create: if activeSignedIn()
+        && validUsernameDoc()
+        && request.resource.data.updatedAt == request.time;
+
+      allow update: if isAdmin()
+        || (activeSignedIn()
+          && resource.data.uid == request.auth.uid
+          && request.resource.data.uid == request.auth.uid
+          && request.resource.data.usernameLower == usernameLower
+          && request.resource.data.keys().hasOnly(["uid", "username", "usernameLower", "createdAt", "updatedAt"])
+          && request.resource.data.createdAt == resource.data.createdAt
+          && request.resource.data.updatedAt == request.time);
+
+      // Pozwól na "no-op delete" gdy dokument nie istnieje (żeby cleanup nie wywalał permission-denied),
+      // ale jeśli istnieje, właściciel musi się zgadzać.
+      allow delete: if isAdmin()
+        || (activeSignedIn()
+          && (
+            !exists(/databases/$(database)/documents/usernames/$(usernameLower))
+            || resource.data.uid == request.auth.uid
+          ));
+    }
+
+    function validPostCreate() {
+      return request.resource.data.keys().hasOnly([
+          "title",
+          "content",
+          "category",
+          "tags",
+          "author",
+          "authorUid",
+          "authorPhotoURL",
+          "authorAvatarColor",
+          "createdAt"
+        ])
+        && request.resource.data.title is string
+        && request.resource.data.title.size() >= 1
+        && request.resource.data.title.size() <= 120
+        && request.resource.data.content is string
+        && request.resource.data.content.size() >= 1
+        && request.resource.data.content.size() <= 6000
+        && request.resource.data.category is string
+        && request.resource.data.category.size() >= 1
+        && request.resource.data.category.size() <= 40
+        && request.resource.data.tags is list
+        && request.resource.data.author is string
+        && request.resource.data.author.size() >= 1
+        && request.resource.data.author.size() <= 40
+        && request.resource.data.authorUid == request.auth.uid
+        && request.resource.data.authorAvatarColor is string
+        && (request.resource.data.authorAvatarColor == ""
+          || request.resource.data.authorAvatarColor.matches('^#[0-9a-fA-F]{6}$'))
+        && request.resource.data.createdAt == request.time;
+    }
+
+    function validCommentCreate() {
+      return request.resource.data.keys().hasOnly([
+          "text",
+          "author",
+          "authorUid",
+          "authorPhotoURL",
+          "authorAvatarColor",
+          "createdAt"
+        ])
+        && request.resource.data.text is string
+        && request.resource.data.text.size() >= 1
+        && request.resource.data.text.size() <= 600
+        && request.resource.data.author is string
+        && request.resource.data.author.size() >= 1
+        && request.resource.data.author.size() <= 40
+        && request.resource.data.authorUid == request.auth.uid
+        && request.resource.data.authorAvatarColor is string
+        && (request.resource.data.authorAvatarColor == ""
+          || request.resource.data.authorAvatarColor.matches('^#[0-9a-fA-F]{6}$'))
+        && request.resource.data.createdAt == request.time;
+    }
+
+    function validPublicProfileWriteBase(uid) {
+      return request.resource.data.keys().hasOnly([
+          "uid",
+          "username",
+          "usernameLower",
+          "photoURL",
+          "avatarColor",
+          "createdAt",
+          "updatedAt"
+        ])
+        && request.resource.data.uid == uid
+        && request.resource.data.username is string
+        && request.resource.data.username.size() >= 1
+        && request.resource.data.username.size() <= 40
+        && request.resource.data.usernameLower is string
+        && (!("photoURL" in request.resource.data) || request.resource.data.photoURL is string)
+        && (!("avatarColor" in request.resource.data) || (request.resource.data.avatarColor is string
+          && (request.resource.data.avatarColor == ""
+            || request.resource.data.avatarColor.matches('^#[0-9a-fA-F]{6}$'))));
+    }
+
+    match /publicProfiles/{uid} {
+      allow read: if true;
+
+      function validPublicProfileCreate(uid) {
+        return validPublicProfileWriteBase(uid)
+          && request.resource.data.createdAt == request.time
+          && request.resource.data.updatedAt == request.time;
+      }
+
+      function validPublicProfileUpdate(uid) {
+        return validPublicProfileWriteBase(uid)
+          && request.resource.data.createdAt == resource.data.createdAt
+          && request.resource.data.updatedAt == request.time;
+      }
+
+      allow create: if isOwner(uid) && validPublicProfileCreate(uid);
+      allow update: if isOwner(uid) && validPublicProfileUpdate(uid);
+      allow delete: if isOwner(uid) || isAdmin();
+    }
+
+    function validAnnouncementWrite() {
+      return request.resource.data.keys().hasOnly([
+          "message",
+          "startsAt",
+          "endsAt",
+          "createdAt",
+          "createdByUid"
+        ])
+        && request.resource.data.message is string
+        && request.resource.data.message.size() >= 1
+        && request.resource.data.message.size() <= 220
+        && (!("startsAt" in request.resource.data) || request.resource.data.startsAt == null || request.resource.data.startsAt is timestamp)
+        && (!("endsAt" in request.resource.data) || request.resource.data.endsAt == null || request.resource.data.endsAt is timestamp)
+        && request.resource.data.createdAt == request.time
+        && (!("createdByUid" in request.resource.data)
+          || request.resource.data.createdByUid == null
+          || request.resource.data.createdByUid == request.auth.uid);
+    }
+
+    match /announcements/{id} {
+      allow read: if true;
+      allow create: if isAdmin() && validAnnouncementWrite();
+      allow update: if isAdmin() && validAnnouncementWrite();
+      allow delete: if isAdmin();
+    }
+
+    function validSurveyResponseBase(responseId) {
+      return request.resource.data.keys().hasOnly([
+          "anonId",
+          "answers",
+          "schemaVersion",
+          "createdAt",
+          "updatedAt"
+        ])
+        && request.resource.data.anonId is string
+        && request.resource.data.anonId.size() >= 6
+        && request.resource.data.anonId.size() <= 24
+        && request.resource.data.anonId == responseId
+        && request.resource.data.schemaVersion is int
+        && request.resource.data.schemaVersion >= 1
+        && request.resource.data.schemaVersion <= 3
+        && request.resource.data.answers is map
+        && request.resource.data.answers.size() >= 1
+        && request.resource.data.answers.size() <= 40
+        && request.resource.data.updatedAt == request.time;
+    }
+
+    function validSurveyResponseCreate(responseId) {
+      return validSurveyResponseBase(responseId)
+        && request.resource.data.createdAt == request.time;
+    }
+
+    function validSurveyResponseUpdate(responseId) {
+      return validSurveyResponseBase(responseId)
+        && request.resource.data.createdAt == resource.data.createdAt;
+    }
+
+    match /surveys/{surveyId} {
+      allow read: if true;
+      allow write: if false;
+
+      match /responses/{responseId} {
+        allow read: if isAdmin();
+        allow create: if false;
+        allow update: if false;
+        allow delete: if isAdmin();
+      }
+
+      function submissionExists(uid) {
+        return exists(/databases/$(database)/documents/surveys/$(surveyId)/submissions/$(uid));
+      }
+
+      function submissionExistsAfter(uid) {
+        return existsAfter(/databases/$(database)/documents/surveys/$(surveyId)/submissions/$(uid));
+      }
+
+      function submissionBefore(uid) {
+        return get(/databases/$(database)/documents/surveys/$(surveyId)/submissions/$(uid));
+      }
+
+      function submissionAfter(uid) {
+        return getAfter(/databases/$(database)/documents/surveys/$(surveyId)/submissions/$(uid));
+      }
+
+      function submissionWrittenNow(uid) {
+        return submissionExistsAfter(uid)
+          && submissionAfter(uid).data.uid == uid
+          && submissionAfter(uid).data.updatedAt == request.time;
+      }
+
+      // Pozwala na +1/-1, ale tylko jeśli w tym samym żądaniu (transakcji/batchu)
+      // użytkownik zapisuje swój dokument submissions/{uid} (updatedAt == request.time).
+      function validSurveyStatsOptionDeltaUpdate() {
+        let uid = request.auth.uid;
+        let beforeExists = submissionExists(uid);
+        let oldValue = beforeExists ? submissionBefore(uid).data.answers[resource.data.qid] : null;
+        let newValue = submissionAfter(uid).data.answers[resource.data.qid];
+        let delta = (newValue == resource.data.label ? 1 : 0) - (oldValue == resource.data.label ? 1 : 0);
+
+        return submissionWrittenNow(uid)
+          && request.resource.data.keys().hasOnly([
+              "qid",
+              "optionIndex",
+              "label",
+              "count",
+              "createdAt",
+              "updatedAt"
+            ])
+          && request.resource.data.qid == resource.data.qid
+          && request.resource.data.optionIndex == resource.data.optionIndex
+          && request.resource.data.label == resource.data.label
+          && request.resource.data.createdAt == resource.data.createdAt
+          && request.resource.data.updatedAt == request.time
+          && request.resource.data.count is int
+          && resource.data.count is int
+          && request.resource.data.count >= 0
+          && (delta == 1 || delta == -1)
+          && request.resource.data.count == resource.data.count + delta;
+      }
+
+      // Zwiększamy licznik tylko przy pierwszym wysłaniu (gdy submissions/{uid} nie istniał).
+      function validSurveyStatsMetaFirstSubmitUpdate() {
+        let uid = request.auth.uid;
+        return submissionWrittenNow(uid)
+          && !submissionExists(uid)
+          && request.resource.data.keys().hasOnly([
+              "totalResponses",
+              "createdAt",
+              "updatedAt"
+            ])
+          && request.resource.data.createdAt == resource.data.createdAt
+          && request.resource.data.updatedAt == request.time
+          && request.resource.data.totalResponses is int
+          && resource.data.totalResponses is int
+          && request.resource.data.totalResponses == resource.data.totalResponses + 1;
+      }
+
+      match /stats/{docId} {
+        allow read: if true;
+        allow create, delete: if isAdmin();
+
+        allow update: if isAdmin() || (activeSignedIn() && (
+          (docId == "_meta" && validSurveyStatsMetaFirstSubmitUpdate())
+          || (docId != "_meta" && validSurveyStatsOptionDeltaUpdate())
+        ));
+      }
+
+      match /submissions/{uid} {
+        allow get: if isOwner(uid) || isAdmin();
+        allow list: if isAdmin();
+
+        function validSurveySubmissionBase(uid) {
+          return request.resource.data.keys().hasOnly([
+              "uid",
+              "answers",
+              "createdAt",
+              "updatedAt"
+            ])
+            && request.resource.data.uid == uid
+            && request.resource.data.answers is map
+            && request.resource.data.answers.size() >= 1
+            && request.resource.data.answers.size() <= 40
+            && request.resource.data.updatedAt == request.time;
+        }
+
+        allow create: if isOwner(uid) && isActiveUser(uid)
+          && validSurveySubmissionBase(uid)
+          && request.resource.data.createdAt == request.time;
+
+        allow update: if isOwner(uid) && isActiveUser(uid)
+          && validSurveySubmissionBase(uid)
+          && request.resource.data.createdAt == resource.data.createdAt;
+
+        allow delete: if isAdmin();
+      }
+    }
+
+    match /posts/{postId} {
+      allow read: if true;
+
+      allow create: if activeSignedIn() && validPostCreate();
+
+      allow update: if isAdmin();
+      allow delete: if isAdmin() || (signedIn() && resource.data.authorUid == request.auth.uid);
+
+      match /comments/{commentId} {
+        allow read: if true;
+        allow create: if activeSignedIn() && validCommentCreate();
+        allow update: if false;
+        allow delete: if isAdmin() || (signedIn() && resource.data.authorUid == request.auth.uid);
+      }
+    }
+  }
+}

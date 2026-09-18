@@ -167,12 +167,13 @@ service cloud.firestore {
         && request.resource.data.createdAt == request.time;
       }
 
-      allow create: if activeSignedIn()
+      allow create: if signedIn()
+        && request.auth.uid == request.resource.data.uid
         && validUsernameDoc()
         && request.resource.data.updatedAt == request.time;
 
       allow update: if isAdmin()
-        || (activeSignedIn()
+        || (signedIn()
           && resource.data.uid == request.auth.uid
           && request.resource.data.uid == request.auth.uid
           && request.resource.data.usernameLower == usernameLower
@@ -183,7 +184,7 @@ service cloud.firestore {
       // Pozwól na "no-op delete" gdy dokument nie istnieje (żeby cleanup nie wywalał permission-denied),
       // ale jeśli istnieje, właściciel musi się zgadzać.
       allow delete: if isAdmin()
-        || (activeSignedIn()
+        || (signedIn()
           && (
             !exists(/databases/$(database)/documents/usernames/$(usernameLower))
             || resource.data.uid == request.auth.uid

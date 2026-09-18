@@ -32,7 +32,10 @@ const PROFILE_KEYS = [
 ];
 
 const getPageName = () => {
-  const last = (window.location.pathname || "").split("/").filter(Boolean).pop();
+  const last = (window.location.pathname || "")
+    .split("/")
+    .filter(Boolean)
+    .pop();
   return last || "index.html";
 };
 
@@ -57,7 +60,9 @@ const setUsernameFromFirebase = async (user) => {
     clearProfileKeys();
   }
   localStorage.setItem(UID_KEY, user.uid);
-  const authEmail = String(user.email || "").trim().toLowerCase();
+  const authEmail = String(user.email || "")
+    .trim()
+    .toLowerCase();
   if (authEmail) localStorage.setItem(AUTH_EMAIL_KEY, authEmail);
   else localStorage.removeItem(AUTH_EMAIL_KEY);
 
@@ -76,9 +81,13 @@ const setUsernameFromFirebase = async (user) => {
     const publicData = publicSnap.exists() ? publicSnap.data() : null;
 
     // Display name bierzemy z publicProfiles (nick), a dopiero potem z users (login).
-    const displayName = String(publicData?.username || userData?.username || "").trim();
+    const displayName = String(
+      publicData?.username || userData?.username || "",
+    ).trim();
 
-    let photoURL = String(userData?.photoURL || publicData?.photoURL || "").trim();
+    let photoURL = String(
+      userData?.photoURL || publicData?.photoURL || "",
+    ).trim();
     const updatedAtRaw = userData?.updatedAt || publicData?.updatedAt;
     const updatedAtMs =
       typeof updatedAtRaw?.toDate === "function"
@@ -94,8 +103,7 @@ const setUsernameFromFirebase = async (user) => {
           storageRef(storage, `Profilowe/${user.uid}/avatar.jpg`),
         );
         photoURL = String(url || "").trim();
-      } catch {
-      }
+      } catch {}
     }
 
     if (photoURL) {
@@ -107,14 +115,18 @@ const setUsernameFromFirebase = async (user) => {
       localStorage.setItem(LOGGED_IN_KEY, displayName);
       localStorage.setItem(AUTH_USER_KEY, displayName);
       localStorage.setItem("profileNick", displayName);
-      return { username: displayName, photoURL: localStorage.getItem(PHOTO_URL_KEY) || "" };
+      return {
+        username: displayName,
+        photoURL: localStorage.getItem(PHOTO_URL_KEY) || "",
+      };
     }
-  } catch {
-  }
+  } catch {}
 
   const fallback = String(user.email || "").trim();
   if (fallback) {
-    const fallbackName = fallback.includes("@") ? fallback.split("@")[0] : fallback;
+    const fallbackName = fallback.includes("@")
+      ? fallback.split("@")[0]
+      : fallback;
     localStorage.setItem(LOGGED_IN_KEY, fallbackName);
     localStorage.setItem(AUTH_USER_KEY, fallbackName);
     localStorage.setItem("profileNick", fallbackName);
@@ -209,14 +221,20 @@ onAuthStateChanged(auth, (user) => {
   // 2) wylogować w UI, gdy tylko profil zmieni się w Firestore.
   try {
     const userRef = doc(db, "users", user.uid);
+    let sawDocExist = false;
     unsubscribeUserWatch = onSnapshot(
       userRef,
       (snap) => {
         if (!auth.currentUser) return;
         if (!snap.exists()) {
-          setLoginNoticeAndLogout("Twoje konto zostało usunięte.");
+          // Dokument może jeszcze nie istnieć tuż po rejestracji/logowaniu (race condition).
+          // Wylogowujemy tylko jeśli wcześniej realnie widzieliśmy istniejący profil, a potem zniknął.
+          if (sawDocExist) {
+            setLoginNoticeAndLogout("Twoje konto zostało usunięte.");
+          }
           return;
         }
+        sawDocExist = true;
         const data = snap.data() || {};
         if (data.isBlocked) {
           setLoginNoticeAndLogout("Twoje konto zostało zablokowane.");
@@ -228,15 +246,15 @@ onAuthStateChanged(auth, (user) => {
           setLoginNoticeAndLogout(`Twoje konto zostało zbanowane.${reason}`);
         }
       },
-      () => {
-      },
+      () => {},
     );
-  } catch {
-  }
+  } catch {}
 
   setUsernameFromFirebase(user)
     .then((info) => {
-      const username = String(info?.username || localStorage.getItem(LOGGED_IN_KEY) || "").trim();
+      const username = String(
+        info?.username || localStorage.getItem(LOGGED_IN_KEY) || "",
+      ).trim();
       const photoURL = String(localStorage.getItem(PHOTO_URL_KEY) || "").trim();
       window.dispatchEvent(
         new CustomEvent("authsession:changed", {
@@ -250,7 +268,9 @@ onAuthStateChanged(auth, (user) => {
           detail: {
             loggedIn: true,
             uid: user.uid,
-            username: String(localStorage.getItem(LOGGED_IN_KEY) || user.email || "").trim(),
+            username: String(
+              localStorage.getItem(LOGGED_IN_KEY) || user.email || "",
+            ).trim(),
             photoURL: String(localStorage.getItem(PHOTO_URL_KEY) || "").trim(),
           },
         }),

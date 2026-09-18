@@ -1,0 +1,4 @@
+node_modules/
+razemwglowie.json
+*serviceAccountKey*.json
+*firebase-adminsdk*.json

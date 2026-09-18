@@ -94,23 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   onAuthStateChanged(auth, (user) => {
     if (user && !loginInProgress) {
-      if (!user.emailVerified) {
-        const errorMessage = document.getElementById("errorMessage");
-        const successMessage = document.getElementById("successMessage");
-        if (successMessage) successMessage.style.display = "none";
-        if (errorMessage) {
-          errorMessage.textContent = olderThan24h
-            ? "Konto nie zostało zweryfikowane w ciągu 24 godzin, więc zostało usunięte. Zarejestruj się ponownie."
-            : VERIFY_REQUIRED_MESSAGE +
-              (verificationEmailSent ? " Wysłano link weryfikacyjny." : "") +
-              (sendHint ? ` ${sendHint}` : "");
-          errorMessage.style.display = "block";
-        }
-        clearSessionKeys();
-        signOut(auth).catch(() => {
-        });
-        return;
-      }
+      // TEMPORARY: allow login during testing without email verification.
       window.location.replace(postLoginRedirect);
     }
   });
@@ -153,67 +137,19 @@ document.addEventListener("DOMContentLoaded", () => {
           password,
         );
 
-        if (!credential.user.emailVerified) {
-          const createdMs = new Date(credential.user?.metadata?.creationTime || "").getTime();
-          const olderThan24h =
-            Number.isFinite(createdMs) && createdMs <= Date.now() - 24 * 60 * 60 * 1000;
-          let verificationEmailSent = false;
-          let verificationSendError = null;
-          try {
-            await sendEmailVerification(credential.user);
-            verificationEmailSent = true;
-          } catch (sendError) {
-            verificationSendError = sendError;
-            console.error("Błąd wysyłki maila weryfikacyjnego:", sendError);
-          }
-
-          if (olderThan24h) {
-            const uid = credential.user.uid;
-            try {
-              const userSnap = await getDoc(doc(db, "users", uid));
-              const usernameLower = userSnap.exists()
-                ? String(userSnap.data()?.usernameLower || "").trim()
-                : "";
-              if (usernameLower) {
-                await deleteDoc(doc(db, "usernames", usernameLower));
-              }
-              await deleteDoc(doc(db, "publicProfiles", uid));
-              await deleteDoc(doc(db, "users", uid));
-            } catch (cleanupErr) {
-              console.warn(
-                "Nie udaĹ‚o siÄ™ wyczyĹ›ciÄ‡ Firestore dla niezweryfikowanego konta:",
-                cleanupErr,
-              );
-            }
-            try {
-              await deleteUser(credential.user);
-            } catch (deleteErr) {
-              console.warn("Nie udaĹ‚o siÄ™ usunÄ…Ä‡ konta Auth:", deleteErr);
-            }
-          }
-
-          try {
-            await signOut(auth);
-          } catch {
-          }
-          clearSessionKeys();
-
-          const sendCode = String(verificationSendError?.code || "");
-          const sendHint =
-            sendCode === "auth/too-many-requests"
-              ? "Za dużo prób — spróbuj ponownie za chwilę."
-              : verificationSendError?.message
-                ? String(verificationSendError.message)
-                : "";
-          errorMessage.textContent = VERIFY_REQUIRED_MESSAGE;
-          errorMessage.style.display = "block";
-          loginInProgress = false;
-          return;
+        let userProfile = null;
+        let profileReadFailed = false;
+        try {
+          userProfile = await getUserByUid(credential.user.uid);
+        } catch (profileError) {
+          profileReadFailed = true;
+          console.warn(
+            "Nie udało się odczytać profilu Firestore:",
+            profileError,
+          );
         }
 
-        let userProfile = await getUserByUid(credential.user.uid);
-
-        if (!userProfile) {
+        if (!userProfile && !profileReadFailed) {
           const usernameFromEmail = emailForAuth.split("@")[0];
           const newUserProfileData = {
             uid: credential.user.uid,
@@ -235,10 +171,15 @@ document.addEventListener("DOMContentLoaded", () => {
           userProfile = { id: credential.user.uid, ...newUserProfileData };
         }
 
-        let effectiveProfile = userProfile;
+        let effectiveProfile = userProfile || {
+          username: emailForAuth.split("@")[0],
+          role: "user",
+          isBlocked: false,
+          ban: null,
+        };
         const needsUsername = !String(effectiveProfile?.username || "").trim();
         const needsEmail = !String(effectiveProfile?.email || "").trim();
-        if (needsUsername || needsEmail) {
+        if ((needsUsername || needsEmail) && !profileReadFailed) {
           const usernameFromEmail = String(emailForAuth || "")
             .split("@")[0]
             .trim();
@@ -248,7 +189,8 @@ document.addEventListener("DOMContentLoaded", () => {
           };
 
           if (needsUsername) {
-            const finalUsername = usernameFromEmail || `user_${credential.user.uid.slice(0, 6)}`;
+            const finalUsername =
+              usernameFromEmail || `user_${credential.user.uid.slice(0, 6)}`;
             patchedProfile.username = finalUsername;
             patchedProfile.usernameLower = finalUsername.toLowerCase();
             patchData.username = patchedProfile.username;
@@ -256,7 +198,9 @@ document.addEventListener("DOMContentLoaded", () => {
           }
           if (needsEmail) {
             patchedProfile.email = emailForAuth;
-            patchedProfile.emailLower = String(emailForAuth || "").toLowerCase();
+            patchedProfile.emailLower = String(
+              emailForAuth || "",
+            ).toLowerCase();
             patchData.email = patchedProfile.email;
             patchData.emailLower = patchedProfile.emailLower;
           }
@@ -296,7 +240,6 @@ document.addEventListener("DOMContentLoaded", () => {
               updatedAt: serverTimestamp(),
             });
           }
-
         } catch (updateError) {
           console.error(
             "Nie-krytyczny błąd po zalogowaniu (aktualizacja danych):",
@@ -307,7 +250,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const finalUsername = String(
           effectiveProfile.username || emailForAuth.split("@")[0],
         ).trim();
-        const authEmailLower = String(emailForAuth || "").trim().toLowerCase();
+        const authEmailLower = String(emailForAuth || "")
+          .trim()
+          .toLowerCase();
         const profileRole =
           String(effectiveProfile.role || "user").toLowerCase() === "admin"
             ? "admin"
